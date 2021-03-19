@@ -34,6 +34,9 @@ namespace Digital_Canvas
             this.PenButton = new System.Windows.Forms.Button();
             this.EraserButton = new System.Windows.Forms.Button();
             this.ColourLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CanvasPanel
@@ -84,11 +87,38 @@ namespace Digital_Canvas
             this.ColourLabel.TabIndex = 4;
             this.ColourLabel.Text = "Colour";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(717, 192);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(96, 23);
+            this.textBox1.TabIndex = 5;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(819, 192);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(96, 23);
+            this.textBox2.TabIndex = 6;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(922, 191);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(161, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Change Canvas Size (Px)";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1108, 639);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ColourLabel);
             this.Controls.Add(this.EraserButton);
             this.Controls.Add(this.PenButton);
@@ -108,6 +138,9 @@ namespace Digital_Canvas
         private System.Windows.Forms.Button PenButton;
         private System.Windows.Forms.Button EraserButton;
         private System.Windows.Forms.Label ColourLabel;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

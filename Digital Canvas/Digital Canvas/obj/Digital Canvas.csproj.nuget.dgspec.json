@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Phoenix\\source\\repos\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj": {}
+    "C:\\Users\\Petar\\Source\\Repos\\7054-code\\Digital-Canvas\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Phoenix\\source\\repos\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj": {
+    "C:\\Users\\Petar\\Source\\Repos\\7054-code\\Digital-Canvas\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Phoenix\\source\\repos\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj",
+        "projectUniqueName": "C:\\Users\\Petar\\Source\\Repos\\7054-code\\Digital-Canvas\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj",
         "projectName": "Digital Canvas",
-        "projectPath": "C:\\Users\\Phoenix\\source\\repos\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj",
-        "packagesPath": "C:\\Users\\Phoenix\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Phoenix\\source\\repos\\Digital Canvas\\Digital Canvas\\obj\\",
+        "projectPath": "C:\\Users\\Petar\\Source\\Repos\\7054-code\\Digital-Canvas\\Digital Canvas\\Digital Canvas\\Digital Canvas.csproj",
+        "packagesPath": "C:\\Users\\Petar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Petar\\Source\\Repos\\7054-code\\Digital-Canvas\\Digital Canvas\\Digital Canvas\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Phoenix\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Petar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

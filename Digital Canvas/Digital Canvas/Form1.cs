@@ -99,6 +99,10 @@ namespace Digital_Canvas
             gfx.DrawLine(pen, mouseLocationA, mouseLocationB);
         }
 
-        
+        private void button1_MouseClick(object sender, MouseEventArgs e)
+        {
+            CanvasPanel.Width = int.Parse(textBox1.Text);
+            CanvasPanel.Height = int.Parse(textBox2.Text);
+        }
     }
 }
