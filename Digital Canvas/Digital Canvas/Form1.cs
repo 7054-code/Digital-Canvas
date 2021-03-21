@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Digital_Canvas
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         public enum Tool
         {
@@ -21,7 +21,7 @@ namespace Digital_Canvas
         Point mouseLocationA;
         Point mouseLocationB;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             this.ColourButton.BackColor = System.Drawing.Color.Black;
@@ -31,10 +31,10 @@ namespace Digital_Canvas
         private void ColourButton_Click(object sender, EventArgs e)
         {
             using (var diag = new ColorDialog())
-            if (diag.ShowDialog() == DialogResult.OK)
-            {
-                ColourButton.BackColor = diag.Color;
-            }
+                if (diag.ShowDialog() == DialogResult.OK)
+                {
+                    ColourButton.BackColor = diag.Color;
+                }
         }
 
         private void CanvasPanel_MouseMove(object sender, MouseEventArgs e)
@@ -99,10 +99,10 @@ namespace Digital_Canvas
             gfx.DrawLine(pen, mouseLocationA, mouseLocationB);
         }
 
-        private void button1_MouseClick(object sender, MouseEventArgs e)
+        private void ChangeCanvasSizeButton_Click(object sender, EventArgs e)
         {
-            CanvasPanel.Width = int.Parse(textBox1.Text);
-            CanvasPanel.Height = int.Parse(textBox2.Text);
+            CanvasPanel.Width = int.Parse(CanvasWidthTextbox.Text);
+            CanvasPanel.Height = int.Parse(CanvasHeightTextbox.Text);
         }
     }
 }
