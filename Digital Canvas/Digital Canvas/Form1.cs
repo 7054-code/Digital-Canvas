@@ -126,46 +126,31 @@ namespace Digital_Canvas
             gfx.Dispose();
         }
 
-       
-        
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
+        //resize canvas but keep drawing/image scale the same
         private void changeCanvasSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 newform = new Form2(ref CanvasPanel, this);
-            newform.Show();
-        }
-
-        private void ColourLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-              this.Close();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            CanvasPanel.Width = int.Parse(CanvasWidthTextbox.Text);
-            CanvasPanel.Height = int.Parse(CanvasHeightTextbox.Text);
-
-            //reflect size changes on the bitmap aswell
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+            //user inputs width and height for canvas change
+            using(Form2 form2 = new Form2(this)) 
+            {
+                //if user pressed the confirm button
+                if(form2.ShowDialog() == DialogResult.OK) 
+                {
+                    //set panel dimensions to user input
+                    CanvasPanel.Width = form2.InputWidth;
+                    CanvasPanel.Height = form2.InputHeight;
+                    //create blank bitmap with updated dimensions
+                    Bitmap tempBitmap = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
+                    using (Graphics g = Graphics.FromImage(tempBitmap))
+                    {
+                        //draw original bitmap on the new bitmap keeping scale the same
+                        g.DrawImage(bmpCanvas, 0, 0, bmpCanvas.Width, bmpCanvas.Height);
+                    }
+                    //replace original bitmap with updated bitmap and new dimensions
+                    bmpCanvas = new Bitmap(tempBitmap, CanvasPanel.Size);
+                    //update canvas display
+                    CanvasPanel.Invalidate();
+                }
+            }
         }
 
         //serializable lets compiler know that this class can be saved to a file
@@ -204,7 +189,7 @@ namespace Digital_Canvas
             public void Print()
             {
                 Trace.WriteLine("File path/name: "+_fileName);
-                Trace.WriteLine("Current tool: "+_currentTool.ToString());
+                Trace.WriteLine("Current tool: "+_currentTool);
                 Trace.WriteLine("Bitmap width: "+_bmpCanvas.Width);
                 Trace.WriteLine("Colour: "+_currentColor);
                 Trace.WriteLine("Canvas size: "+_canvasWidth+"x"+_canvasHeight);
@@ -325,6 +310,27 @@ namespace Digital_Canvas
             if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
                 //save at location
                 bmpCanvas.Save(fileExplorerDialog.FileName);
+        }
+
+        //check if user wants to save before closing program
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //yes or no input pop-up
+            DialogResult dialogResult = MessageBox.Show("Do you want to save before exiting?", "Unsaved progress",
+                MessageBoxButtons.YesNo);
+            switch (dialogResult)
+            {
+                //if user pressed 'yes' button
+                case DialogResult.Yes:
+                    //call 'save' function
+                    saveToolStripMenuItem_Click(sender, e);
+                    //close program
+                    this.Close();
+                    break;
+                case DialogResult.No:
+                    this.Close();
+                    break;
+            }
         }
     }
 

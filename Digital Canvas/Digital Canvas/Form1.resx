@@ -120,23 +120,4 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="PenButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAANVJREFUWEft
-        k0EKwkAUQ+fQXXgFVx7AhXsv4dHa+SWBcch8WkgVSh+8zWiSj2C52Mo03eY9IuZDjWQi5kONZCLmQ41k
-        Iuajlu7SjhrJtFNL5U89EjEfaiQTMR8sfr0/0nY8RMwHi9V42I6HiPlg8Wiwf0fMx2ho9I6Yj36ol59T
-        xHywWI2H7XiImA8WjwZ7EfPB4uuAvx+wVcR8qJFMxHyokUzEfKiRTMR81FIqBxvX79lhMUYyjz3g/niu
-        8u9I+X7eA0gdo18H4A3fOhAOYfT3B5yMUhYzrP6n/qxBgQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="EraserButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAANpJREFUWEft
-        k7ENg0AQBCmawC04cgEOnNOES7M5tC89rwHvcw4IGGkydu4ThostxvFW/CRdOt2UoSIZDz+AYodV1oci
-        GZX1oUj4mt670iZU1ociIR2tpU2orA9Fwl+HtlTWhyLhaR7QSt/WKutDkZCOh/RtrbI+FAndg63K+lAk
-        PM0DtqRNqKwPRUI6WkubUFkfimRU1ociGZX1oUhGZX0oklFZn/vj+Ve7oUjGbugXy6isD0UyKuszj4oY
-        7HDpdFOGimS8HpB+QJHie6723bSBWTqy52p/wQzDFzEseIQGV9KkAAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>
