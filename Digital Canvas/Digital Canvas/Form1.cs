@@ -1,27 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Digital_Canvas
 {
     public partial class MainForm : Form
     {
+        //enum constant set of tools to select between
         public enum Tool
         {
-            Pen, Eraser
+            PEN, PENCIL, PAINTBRUSH, ERASER
         }
 
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
         Bitmap bmpCanvas;
+        
+        //store current enum tool selected
         Tool currentTool;
-        Point mouseLocationA;
-        Point mouseLocationB;
+
+        //getting 2 points between cursor locations for brushes
+        Point cursorLocationA;
+        Point cursorLocationB;
+
         //used to check if file exists already for 'Save'
         string saveFileName;
 
@@ -38,7 +48,7 @@ namespace Digital_Canvas
             //prevents flickering when drawing on screen
             typeof(Panel).InvokeMember("DoubleBuffered",
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, CanvasPanel,
-                new object[] {true});
+                new object[] { true });
         }
 
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
@@ -56,60 +66,132 @@ namespace Digital_Canvas
                 }
         }
 
+        //movement on canvas panel for brush tool movements
         private void CanvasPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                mouseLocationA = mouseLocationB;
-                mouseLocationB = e.Location;
-                if (currentTool == Tool.Pen)
+                cursorLocationA = cursorLocationB;
+                cursorLocationB = e.Location;
+                if (currentTool == Tool.PEN)
                 {
                     ToolPenDrawing();
                 }
 
-                if (currentTool == Tool.Eraser)
+                if (currentTool == Tool.PENCIL)
+                {
+                    ToolPencilDrawing();
+                }
+
+                if (currentTool == Tool.PAINTBRUSH)
+                {
+                    ToolPaintbrushDrawing();
+                }
+
+                if (currentTool == Tool.ERASER)
                 {
                     ToolErasing();
                 }
+                
             }
         }
 
+        //identifying when the mouse is down on the canvas panel
         private void CanvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            mouseLocationA = e.Location;
-            mouseLocationB = e.Location;
+            cursorLocationA = e.Location;
+            cursorLocationB = e.Location;
 
-            if (currentTool == Tool.Pen)
+            if (currentTool == Tool.PEN)
             {
                 ToolPenDrawing();
             }
-            else if (currentTool == Tool.Eraser)
+            else if (currentTool == Tool.PENCIL)
+            {
+                ToolPencilDrawing();
+            }
+            else if (currentTool == Tool.PAINTBRUSH)
+            {
+                ToolPaintbrushDrawing();
+            }
+            else if (currentTool == Tool.ERASER)
             {
                 ToolErasing();
             }
+
         }
 
+        //pen button icon click event for pen tool selected
         private void PenButton_Click(object sender, EventArgs e)
         {
-            currentTool = Tool.Pen;
+            currentTool = Tool.PEN;
         }
 
+        //pencil button icon click event for pencil tool selected
+        private void PencilButton_Click(object sender, EventArgs e)
+        {
+            currentTool = Tool.PENCIL;
+        }
+
+        //paintbrush button icon click event for paintbrush tool selected
+        private void PaintbrushButton_Click(object sender, EventArgs e)
+        {
+            currentTool = Tool.PAINTBRUSH;
+        }
+
+        //eraser button icon click event for eraser tool selected
         private void EraserButton_Click(object sender, EventArgs e)
         {
-            currentTool = Tool.Eraser;
+            currentTool = Tool.ERASER;
         }
 
+        //equating tool size numeric up down value to tool size slider value to keep them constant with each other
+        private void ToolSizeSlider_ValueChanged(object sender, EventArgs e)
+        {
+            ToolSizeNumericUpDown.Value = ToolSizeSlider.Value;
+        }
+
+        private void ToolSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            ToolSizeSlider.Value = (int)ToolSizeNumericUpDown.Value;
+        }
+
+        //equating opacity numeric up down value to opacity slider value to keep them constant with each other
+        private void ToolOpacitySlider_ValueChanged(object sender, EventArgs e)
+        {
+            ToolOpacityNumericUpDown.Value = ToolOpacitySlider.Value;
+        }
+
+        private void ToolOpacityNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            ToolOpacitySlider.Value = (int)ToolOpacityNumericUpDown.Value;
+        }
+
+        //creating a pen with opacity, colour and size and passing it to the DrawLineCanvas method
         private void ToolPenDrawing()
         {
-            var pen = new Pen(ColourButton.BackColor, 10);
+            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, ColourButton.BackColor), (int)ToolSizeNumericUpDown.Value);
             DrawLineCanvas(pen);
         }
         private void ToolErasing()
         {
-            var pen = new Pen(Color.White, 10);
+            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, Color.White), (int)ToolSizeNumericUpDown.Value);;
             DrawLineCanvas(pen);
         }
 
+        private void ToolPencilDrawing()
+        {
+            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, ColourButton.BackColor), (int)ToolSizeNumericUpDown.Value);
+            DrawLineCanvas(pen);
+        }
+
+        private void ToolPaintbrushDrawing()
+        {
+            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, ColourButton.BackColor), (int)ToolSizeNumericUpDown.Value);
+            DrawLineCanvas(pen);
+        }
+
+        //passes pen properties through and renders line drawn
         private void DrawLineCanvas(Pen pen)
         {
             //instead of drawing onto the canvaspanel directly, draw onto the bitmap
@@ -117,7 +199,7 @@ namespace Digital_Canvas
             gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-            gfx.DrawLine(pen, mouseLocationA, mouseLocationB);
+            gfx.DrawLine(pen, cursorLocationA, cursorLocationB);
 
             //update panel to show changes - results in .Paint event so _Paint method is called
             CanvasPanel.Invalidate();
@@ -126,13 +208,11 @@ namespace Digital_Canvas
             gfx.Dispose();
         }
 
-        private void ChangeCanvasSizeButton_Click(object sender, EventArgs e)
-        {
-            CanvasPanel.Width = int.Parse(CanvasWidthTextbox.Text);
-            CanvasPanel.Height = int.Parse(CanvasHeightTextbox.Text);
 
-            //reflect size changes on the bitmap aswell
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+        private void changeCanvasSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 newform = new Form2(ref CanvasPanel, this);
+            newform.Show();
         }
 
         //serializable lets compiler know that this class can be saved to a file
@@ -165,18 +245,24 @@ namespace Digital_Canvas
             public Color GetCurrentColor => _currentColor;
             public int GetCanvasWidth => _canvasWidth;
             public int GetCanvasHeight => _canvasHeight;
-            
+
 
             //used for debugging, prints to Output window (bottom right)
             public void Print()
             {
-                Trace.WriteLine("File path/name: "+_fileName);
-                Trace.WriteLine("Current tool: "+_currentTool.ToString());
-                Trace.WriteLine("Bitmap width: "+_bmpCanvas.Width);
-                Trace.WriteLine("Colour: "+_currentColor);
-                Trace.WriteLine("Canvas size: "+_canvasWidth+"x"+_canvasHeight);
+                Trace.WriteLine("File path/name: " + _fileName);
+                Trace.WriteLine("Current tool: " + _currentTool.ToString());
+                Trace.WriteLine("Bitmap width: " + _bmpCanvas.Width);
+                Trace.WriteLine("Colour: " + _currentColor);
+                Trace.WriteLine("Canvas size: " + _canvasWidth + "x" + _canvasHeight);
             }
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+              this.Close();
+        }
+
 
         //Open data
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -193,7 +279,7 @@ namespace Digital_Canvas
                 Stream openFileStream = File.OpenRead(fileExplorerDialog.FileName);
                 var deserializer = new BinaryFormatter();
                 //get data from file to object
-                var tempData = (CanvasData) deserializer.Deserialize(openFileStream);
+                var tempData = (CanvasData)deserializer.Deserialize(openFileStream);
                 //end connection to file
                 openFileStream.Close();
 
@@ -279,6 +365,12 @@ namespace Digital_Canvas
             Export("png");
         }
 
+        //export to psd
+        private void psdPhotoshopDocumentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Export("psd");
+        }
+
         private void Export(string fileType)
         {
             //allows user to find a location to save file
@@ -294,5 +386,4 @@ namespace Digital_Canvas
                 bmpCanvas.Save(fileExplorerDialog.FileName);
         }
     }
-
 }
