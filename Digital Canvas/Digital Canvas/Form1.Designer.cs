@@ -73,21 +73,21 @@ namespace Digital_Canvas
             this.PenButton = new System.Windows.Forms.Button();
             this.EraserButton = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.layersPanel = new System.Windows.Forms.Panel();
             this.TopToolbarPanel = new System.Windows.Forms.Panel();
             this.LeftToolbarPanel = new System.Windows.Forms.Panel();
-            this.layersPanel = new System.Windows.Forms.Panel();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.LeftToolbarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.LeftToolbarPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // CanvasPanel
@@ -454,6 +454,31 @@ namespace Digital_Canvas
             this.splitContainer1.SplitterDistance = 862;
             this.splitContainer1.TabIndex = 10;
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Location = new System.Drawing.Point(6, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.layersPanel);
+            this.splitContainer2.Size = new System.Drawing.Size(423, 908);
+            this.splitContainer2.SplitterDistance = 253;
+            this.splitContainer2.TabIndex = 11;
+            // 
+            // layersPanel
+            // 
+            this.layersPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.layersPanel.Location = new System.Drawing.Point(-3, 3);
+            this.layersPanel.Name = "layersPanel";
+            this.layersPanel.Size = new System.Drawing.Size(426, 661);
+            this.layersPanel.TabIndex = 10;
+            // 
             // TopToolbarPanel
             // 
             this.TopToolbarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -472,31 +497,6 @@ namespace Digital_Canvas
             this.LeftToolbarPanel.Size = new System.Drawing.Size(56, 911);
             this.LeftToolbarPanel.TabIndex = 12;
             // 
-            // layersPanel
-            // 
-            this.layersPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.layersPanel.Location = new System.Drawing.Point(-3, 3);
-            this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(426, 661);
-            this.layersPanel.TabIndex = 10;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Location = new System.Drawing.Point(6, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.panel1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.layersPanel);
-            this.splitContainer2.Size = new System.Drawing.Size(423, 908);
-            this.splitContainer2.SplitterDistance = 253;
-            this.splitContainer2.TabIndex = 11;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -508,7 +508,7 @@ namespace Digital_Canvas
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
@@ -521,11 +521,11 @@ namespace Digital_Canvas
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.LeftToolbarPanel.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.LeftToolbarPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
