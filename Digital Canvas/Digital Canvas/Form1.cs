@@ -22,7 +22,7 @@ namespace Digital_Canvas
         Tool currentTool;
         Point mouseLocationA;
         Point mouseLocationB;
-        //used for 'Save' function
+        //used to check if file exists already for 'Save'
         string saveFileName;
 
         public MainForm()
@@ -123,7 +123,7 @@ namespace Digital_Canvas
             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             gfx.DrawLine(pen, mouseLocationA, mouseLocationB);
 
-            //update panel to show changes
+            //update panel to show changes - results in .Paint event so _Paint method is called
             CanvasPanel.Invalidate();
 
             //frees up system resources since it isn't needed anymore
@@ -274,43 +274,28 @@ namespace Digital_Canvas
         //export to BMP
         private void bmpBMPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //allows user to find a location to save file
-            SaveFileDialog fileExplorerDialog = new SaveFileDialog();
-            //automatically save as this file extension
-            fileExplorerDialog.Filter = "Bitmap Image|*.bmp";
-            fileExplorerDialog.Title = "Export to BMP";
-            //open popup and  check that user picked a location
-            if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
-            {
-                //save at location
-                bmpCanvas.Save(fileExplorerDialog.FileName);
-            }
+            Export("bmp");
         }
 
         //export to jpg
         private void jpgJPGToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //allows user to find a location to save file
-            SaveFileDialog fileExplorerDialog = new SaveFileDialog();
-            //automatically save as this file extension
-            fileExplorerDialog.Filter = "JPG Image|*.jpg";
-            fileExplorerDialog.Title = "Export to JPG";
-            //open popup and  check that user picked a location
-            if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
-            {
-                //save at location
-                bmpCanvas.Save(fileExplorerDialog.FileName);
-            }
+            Export("jpg");
         }
 
         //export to png
         private void pngPNGToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Export("png");
+        }
+
+        private void Export(string fileType)
+        {
             //allows user to find a location to save file
             SaveFileDialog fileExplorerDialog = new SaveFileDialog();
             //automatically save as this file extension
-            fileExplorerDialog.Filter = "PNG Image|*.png";
-            fileExplorerDialog.Title = "Export to PNG";
+            fileExplorerDialog.Filter = fileType.ToUpper()+"Image|*."+fileType;
+            fileExplorerDialog.Title = "Export to "+fileType.ToUpper();
             //open popup and  check that user picked a location
             if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
             {
@@ -318,7 +303,6 @@ namespace Digital_Canvas
                 bmpCanvas.Save(fileExplorerDialog.FileName);
             }
         }
-
     }
 
 }
