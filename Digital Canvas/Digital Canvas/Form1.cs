@@ -108,7 +108,7 @@ namespace Digital_Canvas
 
         private void changeCanvasSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 newform = new Form2(ref CanvasPanel);
+            Form2 newform = new Form2(ref CanvasPanel, this);
             newform.Show();
         }
 
@@ -136,5 +136,6 @@ namespace Digital_Canvas
         {
 
         }
+
     }
 }

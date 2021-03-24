@@ -13,11 +13,14 @@ namespace Digital_Canvas
     public partial class Form2 : Form
     {
         Panel refpanel;
-        public Form2(ref Panel canvaspanel)
+        public Form2(ref Panel canvaspanel, Form main)
         {
             refpanel = canvaspanel;
             InitializeComponent();
 
+            //set the position of the popup
+            this.Top = main.Top + (main.Height / 2);
+            this.Left = main.Left + (main.Width / 2);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -29,6 +32,11 @@ namespace Digital_Canvas
         {
             refpanel.Height = int.Parse(textBox2.Text);
             refpanel.Width = int.Parse(textBox1.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
