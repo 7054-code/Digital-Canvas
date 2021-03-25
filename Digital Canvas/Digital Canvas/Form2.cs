@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Digital_Canvas
@@ -20,8 +13,8 @@ namespace Digital_Canvas
             InitializeComponent();
 
             //set the position of the popup
-            this.Top = main.Top + (main.Height / 2);
-            this.Left = main.Left + (main.Width / 2);
+            Top = main.Top + (main.Height / 2);
+            Left = main.Left + (main.Width / 2);
         }
 
         //getters

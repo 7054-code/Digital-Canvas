@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Windows.Forms;
-using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Digital_Canvas
@@ -42,7 +33,7 @@ namespace Digital_Canvas
         public MainForm()
         {
             InitializeComponent();
-            this.ColourButton.BackColor = System.Drawing.Color.Black;
+            ColourButton.BackColor = Color.Black;
             EraserButton.BackColor = Color.Transparent;
 
             //setting bitmap to size of CanvasPanel
@@ -179,7 +170,7 @@ namespace Digital_Canvas
         }
         private void ToolErasing()
         {
-            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, Color.White), (int)ToolSizeNumericUpDown.Value);;
+            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, Color.White), (int)ToolSizeNumericUpDown.Value);
             DrawLineCanvas(pen);
         }
 
@@ -200,9 +191,9 @@ namespace Digital_Canvas
         {
             //instead of drawing onto the canvaspanel directly, draw onto the bitmap
             var gfx = Graphics.FromImage(bmpCanvas);
-            gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+            gfx.SmoothingMode = SmoothingMode.AntiAlias;
+            pen.StartCap = LineCap.Round;
+            pen.EndCap = LineCap.Round;
             gfx.DrawLine(pen, cursorLocationA, cursorLocationB);
 
             //update panel to show changes - results in .Paint event so _Paint method is called
@@ -285,7 +276,7 @@ namespace Digital_Canvas
         //Open data
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var fileExplorerDialog = new OpenFileDialog
+            OpenFileDialog fileExplorerDialog = new OpenFileDialog
             {
                 Filter = "Bin file|*.bin",
                 Title = "Open a canvas project"
@@ -295,9 +286,9 @@ namespace Digital_Canvas
             {
                 //open file connection
                 Stream openFileStream = File.OpenRead(fileExplorerDialog.FileName);
-                var deserializer = new BinaryFormatter();
+                BinaryFormatter deserializer = new BinaryFormatter();
                 //get data from file to object
-                var tempData = (CanvasData) deserializer.Deserialize(openFileStream);
+                CanvasData tempData = (CanvasData) deserializer.Deserialize(openFileStream);
                 //end connection to file
                 openFileStream.Close();
 
@@ -320,12 +311,12 @@ namespace Digital_Canvas
             if (File.Exists(saveFileName))
             {
                 //store wanted variables/data in this object
-                var tempData = new CanvasData(bmpCanvas, currentTool, saveFileName, ColourButton.BackColor,
+                CanvasData tempData = new CanvasData(bmpCanvas, currentTool, saveFileName, ColourButton.BackColor,
                     CanvasPanel.Width, CanvasPanel.Height);
 
                 //create file at location given by user
                 Stream saveFileStream = File.Create(saveFileName);
-                var serializer = new BinaryFormatter();
+                BinaryFormatter serializer = new BinaryFormatter();
                 //add object data to file
                 serializer.Serialize(saveFileStream, tempData);
                 //end connection to file
@@ -342,7 +333,7 @@ namespace Digital_Canvas
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //allows user to find a location to save file
-            var fileExplorerDialog = new SaveFileDialog
+            SaveFileDialog fileExplorerDialog = new SaveFileDialog
             {
                 //automatically save as this file extension
                 Filter = "Bin file|*.bin",
@@ -352,12 +343,12 @@ namespace Digital_Canvas
             if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
             {
                 //store wanted variables/data in this object
-                var tempData = new CanvasData(bmpCanvas, currentTool, fileExplorerDialog.FileName,
+                CanvasData tempData = new CanvasData(bmpCanvas, currentTool, fileExplorerDialog.FileName,
                     ColourButton.BackColor, CanvasPanel.Width, CanvasPanel.Height);
 
                 //create file at location given by user
                 Stream saveFileStream = File.Create(fileExplorerDialog.FileName);
-                var serializer = new BinaryFormatter();
+                BinaryFormatter serializer = new BinaryFormatter();
                 //add object data to file
                 serializer.Serialize(saveFileStream, tempData);
                 //end connection to file
@@ -392,7 +383,7 @@ namespace Digital_Canvas
         private void Export(string fileType)
         {
             //allows user to find a location to save file
-            var fileExplorerDialog = new SaveFileDialog
+            SaveFileDialog fileExplorerDialog = new SaveFileDialog
             {
                 //automatically save as this file extension
                 Filter = fileType.ToUpper() + " Image|*." + fileType,
@@ -417,10 +408,10 @@ namespace Digital_Canvas
                     //call 'save' function
                     saveToolStripMenuItem_Click(sender, e);
                     //close program
-                    this.Close();
+                    Close();
                     break;
                 case DialogResult.No:
-                    this.Close();
+                    Close();
                     break;
             }
         }
