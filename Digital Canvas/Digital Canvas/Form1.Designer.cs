@@ -76,8 +76,30 @@ namespace Digital_Canvas
             this.layersPanel = new System.Windows.Forms.Panel();
             this.TopToolbarPanel = new System.Windows.Forms.Panel();
             this.LeftToolbarPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ToolOpacitySlider = new System.Windows.Forms.TrackBar();
+            this.ToolSizeSlider = new System.Windows.Forms.TrackBar();
+            this.ToolOpacityNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.OpacityLabel = new System.Windows.Forms.Label();
+            this.ToolSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SizeLabel = new System.Windows.Forms.Label();
+            this.ColourButton = new System.Windows.Forms.Button();
+            this.ColourLabel = new System.Windows.Forms.Label();
+            this.PenButton = new System.Windows.Forms.Button();
+            this.EraserButton = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.layersPanel = new System.Windows.Forms.Panel();
+            this.TopToolbarPanel = new System.Windows.Forms.Panel();
+            this.LeftToolbarPanel = new System.Windows.Forms.Panel();
+            this.PaintbrushButton = new System.Windows.Forms.Button();
+            this.PencilButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolOpacitySlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolSizeSlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolOpacityNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolSizeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -93,6 +115,7 @@ namespace Digital_Canvas
             // 
             this.CanvasPanel.BackColor = System.Drawing.Color.White;
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.CanvasPanel.Location = new System.Drawing.Point(79, 88);
             this.CanvasPanel.Location = new System.Drawing.Point(27, 22);
             this.CanvasPanel.Name = "CanvasPanel";
             this.CanvasPanel.Size = new System.Drawing.Size(461, 378);
@@ -134,27 +157,27 @@ namespace Digital_Canvas
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.newToolStripMenuItem.Text = "New...";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -166,7 +189,7 @@ namespace Digital_Canvas
             this.pngPNGToolStripMenuItem,
             this.psdPhotoshopDocumentToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // bmpBMPToolStripMenuItem
@@ -195,17 +218,18 @@ namespace Digital_Canvas
             this.psdPhotoshopDocumentToolStripMenuItem.Name = "psdPhotoshopDocumentToolStripMenuItem";
             this.psdPhotoshopDocumentToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.psdPhotoshopDocumentToolStripMenuItem.Text = ".psd (Photoshop Document)";
+            this.psdPhotoshopDocumentToolStripMenuItem.Click += new System.EventHandler(this.psdPhotoshopDocumentToolStripMenuItem_Click);
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.importToolStripMenuItem.Text = "Import";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -500,6 +524,235 @@ namespace Digital_Canvas
             this.LeftToolbarPanel.Size = new System.Drawing.Size(37, 592);
             this.LeftToolbarPanel.TabIndex = 12;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ToolOpacitySlider);
+            this.panel1.Controls.Add(this.ToolSizeSlider);
+            this.panel1.Controls.Add(this.ToolOpacityNumericUpDown);
+            this.panel1.Controls.Add(this.OpacityLabel);
+            this.panel1.Controls.Add(this.ToolSizeNumericUpDown);
+            this.panel1.Controls.Add(this.SizeLabel);
+            this.panel1.Controls.Add(this.ColourButton);
+            this.panel1.Controls.Add(this.ColourLabel);
+            this.panel1.Location = new System.Drawing.Point(-2, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(287, 161);
+            this.panel1.TabIndex = 9;
+            // 
+            // ToolOpacitySlider
+            // 
+            this.ToolOpacitySlider.Location = new System.Drawing.Point(50, 75);
+            this.ToolOpacitySlider.Maximum = 100;
+            this.ToolOpacitySlider.Name = "ToolOpacitySlider";
+            this.ToolOpacitySlider.Size = new System.Drawing.Size(104, 45);
+            this.ToolOpacitySlider.TabIndex = 6;
+            this.ToolOpacitySlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ToolOpacitySlider.Value = 100;
+            this.ToolOpacitySlider.ValueChanged += new System.EventHandler(this.ToolOpacitySlider_ValueChanged);
+            // 
+            // ToolSizeSlider
+            // 
+            this.ToolSizeSlider.Location = new System.Drawing.Point(49, 47);
+            this.ToolSizeSlider.Maximum = 100;
+            this.ToolSizeSlider.Name = "ToolSizeSlider";
+            this.ToolSizeSlider.Size = new System.Drawing.Size(104, 45);
+            this.ToolSizeSlider.TabIndex = 5;
+            this.ToolSizeSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ToolSizeSlider.Value = 10;
+            this.ToolSizeSlider.ValueChanged += new System.EventHandler(this.ToolSizeSlider_ValueChanged);
+            // 
+            // ToolOpacityNumericUpDown
+            // 
+            this.ToolOpacityNumericUpDown.Location = new System.Drawing.Point(182, 77);
+            this.ToolOpacityNumericUpDown.Name = "ToolOpacityNumericUpDown";
+            this.ToolOpacityNumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.ToolOpacityNumericUpDown.TabIndex = 4;
+            this.ToolOpacityNumericUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.ToolOpacityNumericUpDown.ValueChanged += new System.EventHandler(this.ToolOpacityNumericUpDown_ValueChanged);
+            // 
+            // OpacityLabel
+            // 
+            this.OpacityLabel.AutoSize = true;
+            this.OpacityLabel.Location = new System.Drawing.Point(8, 79);
+            this.OpacityLabel.Name = "OpacityLabel";
+            this.OpacityLabel.Size = new System.Drawing.Size(43, 13);
+            this.OpacityLabel.TabIndex = 3;
+            this.OpacityLabel.Text = "Opacity";
+            // 
+            // ToolSizeNumericUpDown
+            // 
+            this.ToolSizeNumericUpDown.Location = new System.Drawing.Point(181, 42);
+            this.ToolSizeNumericUpDown.Name = "ToolSizeNumericUpDown";
+            this.ToolSizeNumericUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ToolSizeNumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.ToolSizeNumericUpDown.TabIndex = 2;
+            this.ToolSizeNumericUpDown.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.ToolSizeNumericUpDown.ValueChanged += new System.EventHandler(this.ToolSizeNumericUpDown_ValueChanged);
+            // 
+            // SizeLabel
+            // 
+            this.SizeLabel.Location = new System.Drawing.Point(7, 47);
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(35, 13);
+            this.SizeLabel.TabIndex = 0;
+            this.SizeLabel.Text = "Size";
+            // 
+            // ColourButton
+            // 
+            this.ColourButton.Location = new System.Drawing.Point(50, 13);
+            this.ColourButton.Name = "ColourButton";
+            this.ColourButton.Size = new System.Drawing.Size(75, 23);
+            this.ColourButton.TabIndex = 1;
+            this.ColourButton.UseVisualStyleBackColor = true;
+            this.ColourButton.Click += new System.EventHandler(this.ColourButton_Click);
+            // 
+            // ColourLabel
+            // 
+            this.ColourLabel.AutoSize = true;
+            this.ColourLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.ColourLabel.Location = new System.Drawing.Point(7, 18);
+            this.ColourLabel.Name = "ColourLabel";
+            this.ColourLabel.Size = new System.Drawing.Size(37, 13);
+            this.ColourLabel.TabIndex = 0;
+            this.ColourLabel.Text = "Colour";
+            // 
+            // PenButton
+            // 
+            this.PenButton.BackColor = System.Drawing.Color.Transparent;
+            this.PenButton.FlatAppearance.BorderSize = 0;
+            this.PenButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PenButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.PenButton.Image = global::Digital_Canvas.Properties.Resources.penIcon;
+            this.PenButton.Location = new System.Drawing.Point(0, 4);
+            this.PenButton.Name = "PenButton";
+            this.PenButton.Size = new System.Drawing.Size(37, 31);
+            this.PenButton.TabIndex = 2;
+            this.PenButton.UseVisualStyleBackColor = false;
+            this.PenButton.Click += new System.EventHandler(this.PenButton_Click);
+            // 
+            // EraserButton
+            // 
+            this.EraserButton.BackColor = System.Drawing.Color.Transparent;
+            this.EraserButton.FlatAppearance.BorderSize = 0;
+            this.EraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.EraserButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.EraserButton.Image = global::Digital_Canvas.Properties.Resources.eraserIcon;
+            this.EraserButton.Location = new System.Drawing.Point(0, 117);
+            this.EraserButton.Name = "EraserButton";
+            this.EraserButton.Size = new System.Drawing.Size(37, 32);
+            this.EraserButton.TabIndex = 3;
+            this.EraserButton.UseVisualStyleBackColor = false;
+            this.EraserButton.Click += new System.EventHandler(this.EraserButton_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Location = new System.Drawing.Point(39, 51);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.splitContainer1.Panel1.Controls.Add(this.CanvasPanel);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(865, 592);
+            this.splitContainer1.SplitterDistance = 574;
+            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.TabIndex = 10;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Location = new System.Drawing.Point(4, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.layersPanel);
+            this.splitContainer2.Size = new System.Drawing.Size(282, 590);
+            this.splitContainer2.SplitterDistance = 164;
+            this.splitContainer2.SplitterWidth = 3;
+            this.splitContainer2.TabIndex = 11;
+            // 
+            // layersPanel
+            // 
+            this.layersPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.layersPanel.Location = new System.Drawing.Point(-2, 2);
+            this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.layersPanel.Name = "layersPanel";
+            this.layersPanel.Size = new System.Drawing.Size(284, 430);
+            this.layersPanel.TabIndex = 10;
+            // 
+            // TopToolbarPanel
+            // 
+            this.TopToolbarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TopToolbarPanel.Location = new System.Drawing.Point(0, 22);
+            this.TopToolbarPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.TopToolbarPanel.Name = "TopToolbarPanel";
+            this.TopToolbarPanel.Size = new System.Drawing.Size(904, 28);
+            this.TopToolbarPanel.TabIndex = 11;
+            // 
+            // LeftToolbarPanel
+            // 
+            this.LeftToolbarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.LeftToolbarPanel.Controls.Add(this.PaintbrushButton);
+            this.LeftToolbarPanel.Controls.Add(this.PencilButton);
+            this.LeftToolbarPanel.Controls.Add(this.PenButton);
+            this.LeftToolbarPanel.Controls.Add(this.EraserButton);
+            this.LeftToolbarPanel.Location = new System.Drawing.Point(0, 51);
+            this.LeftToolbarPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.LeftToolbarPanel.Name = "LeftToolbarPanel";
+            this.LeftToolbarPanel.Size = new System.Drawing.Size(37, 592);
+            this.LeftToolbarPanel.TabIndex = 12;
+            // 
+            // PaintbrushButton
+            // 
+            this.PaintbrushButton.BackColor = System.Drawing.Color.Transparent;
+            this.PaintbrushButton.FlatAppearance.BorderSize = 0;
+            this.PaintbrushButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PaintbrushButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.PaintbrushButton.Location = new System.Drawing.Point(0, 79);
+            this.PaintbrushButton.Name = "PaintbrushButton";
+            this.PaintbrushButton.Size = new System.Drawing.Size(37, 32);
+            this.PaintbrushButton.TabIndex = 5;
+            this.PaintbrushButton.UseVisualStyleBackColor = false;
+            this.PaintbrushButton.Click += new System.EventHandler(this.PaintbrushButton_Click);
+            // 
+            // PencilButton
+            // 
+            this.PencilButton.BackColor = System.Drawing.Color.Transparent;
+            this.PencilButton.FlatAppearance.BorderSize = 0;
+            this.PencilButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PencilButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.PencilButton.Location = new System.Drawing.Point(0, 41);
+            this.PencilButton.Name = "PencilButton";
+            this.PencilButton.Size = new System.Drawing.Size(37, 32);
+            this.PencilButton.TabIndex = 4;
+            this.PencilButton.UseVisualStyleBackColor = false;
+            this.PencilButton.Click += new System.EventHandler(this.PencilButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,6 +772,10 @@ namespace Digital_Canvas
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolOpacitySlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolSizeSlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolOpacityNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolSizeNumericUpDown)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -581,6 +838,14 @@ namespace Digital_Canvas
         private System.Windows.Forms.Panel LeftToolbarPanel;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Panel layersPanel;
+        private System.Windows.Forms.Button PaintbrushButton;
+        private System.Windows.Forms.Button PencilButton;
+        private System.Windows.Forms.NumericUpDown ToolSizeNumericUpDown;
+        private System.Windows.Forms.Label SizeLabel;
+        private System.Windows.Forms.NumericUpDown ToolOpacityNumericUpDown;
+        private System.Windows.Forms.Label OpacityLabel;
+        private System.Windows.Forms.TrackBar ToolSizeSlider;
+        private System.Windows.Forms.TrackBar ToolOpacitySlider;
     }
 }
 
