@@ -521,7 +521,51 @@ namespace Digital_Canvas
             {
                 undoList.Push(new Bitmap(bmpCanvas));
                 bmpCanvas = new Bitmap(redoList.Pop());
-                CanvasPanel.Invalidate();   
+                CanvasPanel.Invalidate();
+            }
+        }
+        
+        //import image and resize to fill canvas if larger than it
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //allows user to find an image
+            OpenFileDialog fileExplorerDialog = new OpenFileDialog
+            {
+                //automatically save as this file extension
+                Filter = "Image Files|*.bmp; *.jpg; *.jpeg; *.png; *.gif",
+                Title = "Import image"
+            };
+            //open popup and  check that user picked a location
+            if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
+            {
+                //store chosen image
+                Bitmap importedImage = new Bitmap(fileExplorerDialog.OpenFile());
+                
+                //if imported image width and height is larger than bmpCanvas
+                if ((importedImage.Width > bmpCanvas.Width) && (importedImage.Height > bmpCanvas.Height))
+                {
+                    bmpCanvas = new Bitmap(importedImage, bmpCanvas.Size);
+                }
+                //if width is larger than bmpcanvas width
+                else if ((importedImage.Width > bmpCanvas.Width) && (importedImage.Height < bmpCanvas.Height))
+                {
+                    bmpCanvas = new Bitmap(importedImage, new Size(bmpCanvas.Width, importedImage.Height));
+                }
+                //if height is larger than bmpcanvas height
+                else if ((importedImage.Width < bmpCanvas.Width) && (importedImage.Height > bmpCanvas.Height))
+                {
+                    bmpCanvas = new Bitmap(importedImage, new Size(importedImage.Width, bmpCanvas.Height));
+                }
+                //if imported image smaller than bmpcanvas
+                else
+                {
+                    bmpCanvas = new Bitmap(importedImage);
+                }
+                
+                //make it match the entire canvas
+                bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+                //update canvas
+                CanvasPanel.Invalidate();
             }
         }
     }
