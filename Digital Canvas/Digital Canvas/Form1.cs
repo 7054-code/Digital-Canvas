@@ -441,6 +441,7 @@ namespace Digital_Canvas
             bmpCanvas.RotateFlip(RotateFlipType.Rotate90FlipNone);
             transformations.Add("plus90");
             fitPanelToBmp();
+            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             //update canvas
             CanvasPanel.Invalidate();
         }
@@ -453,6 +454,7 @@ namespace Digital_Canvas
             bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
             transformations.Add("plus180");
             fitPanelToBmp();
+            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             CanvasPanel.Invalidate();
         }
         //rotate bmpcanvas -90°
@@ -464,6 +466,7 @@ namespace Digital_Canvas
             bmpCanvas.RotateFlip(RotateFlipType.Rotate270FlipNone);
             transformations.Add("minus90");
             fitPanelToBmp();
+            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             CanvasPanel.Invalidate();
         }
         //iterate through transformations list and apply opposite transformation
@@ -495,6 +498,7 @@ namespace Digital_Canvas
             transformations.Clear();
             //use the function which resizes the panel to the dimensions of the bmppanel
             fitPanelToBmp();
+            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             //redraw the panel
             CanvasPanel.Invalidate();
         }
@@ -569,5 +573,4 @@ namespace Digital_Canvas
             }
         }
     }
-
 }
