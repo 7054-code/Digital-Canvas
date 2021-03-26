@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -30,13 +31,15 @@ namespace Digital_Canvas
         //used to check if file exists already for 'Save'
         string saveFileName;
 
+        //simple list of transformations used to reset bmpcanvas back to start
+        List<string> transformations = new List<string>();
         public MainForm()
         {
             InitializeComponent();
             ColourButton.BackColor = Color.Black;
             EraserButton.BackColor = Color.Transparent;
 
-            //setting bitmap to size of CanvasPanel
+            //setting bitmap to cancas panel size
             bmpCanvas = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
             //when the .Paint event happens -> do the _Paint method (happens on .Invalidate() and startup)
             CanvasPanel.Paint += CanvasPanel_Paint;
@@ -44,6 +47,8 @@ namespace Digital_Canvas
             typeof(Panel).InvokeMember("DoubleBuffered",
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, CanvasPanel,
                 new object[] { true });
+
+          
         }
 
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
@@ -415,6 +420,66 @@ namespace Digital_Canvas
                     break;
             }
         }
+        //fit canvas panel to bmpcanvas
+        private void fitPanelToBmp()
+        {
+            CanvasPanel.Size = bmpCanvas.Size;
+        }
+        //rotate bmpcanvas +90°
+        private void rotate90ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bmpCanvas.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            transformations.Add("plus90");
+            fitPanelToBmp();
+            //update canvas
+            CanvasPanel.Invalidate();
+        }
+        //rotate bmpccanvas +180°
+        private void rotate180ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            transformations.Add("plus180");
+            fitPanelToBmp();
+            CanvasPanel.Invalidate();
+        }
+        //rotate bmpcanvas -90°
+        private void rotate90ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            bmpCanvas.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            transformations.Add("minus90");
+            fitPanelToBmp();
+            CanvasPanel.Invalidate();
+        }
+        //iterate through transformations list and apply opposite transformation
+        private void resetRotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {   //for all historical transformations
+            for (int i = 0;i<transformations.Count;i++)
+            {   //if currently considered transformation is a plus 90 rotate
+                if (transformations[i]=="plus90")
+                {   //rotate it minus 90        //the other rotations are a continuation along these lines
+                    bmpCanvas.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    
+                }
+                else if (transformations[i] == "minus90")
+                {
+                    bmpCanvas.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (transformations[i] == "plus180")
+                {
+                    bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                
+                
+            }
+            //clear the transformations history
+            transformations.Clear();
+            //use the function which resizes the panel to the dimensions of the bmppanel
+            fitPanelToBmp();
+            //redraw the panel
+            CanvasPanel.Invalidate();
+        }
+
+       
     }
 
 }
