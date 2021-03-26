@@ -21,6 +21,10 @@ namespace Digital_Canvas
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
         Bitmap bmpCanvas;
         
+        //stacks that stores list of changes for undo/redo
+        private Stack<Bitmap> undoList = new Stack<Bitmap>();
+        private Stack<Bitmap> redoList = new Stack<Bitmap>();
+
         //store current enum tool selected
         Tool currentTool;
 
@@ -39,7 +43,7 @@ namespace Digital_Canvas
             ColourButton.BackColor = Color.Black;
             EraserButton.BackColor = Color.Transparent;
 
-            //setting bitmap to cancas panel size
+            //setting bitmap to CanvasPanel size
             bmpCanvas = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
             //when the .Paint event happens -> do the _Paint method (happens on .Invalidate() and startup)
             CanvasPanel.Paint += CanvasPanel_Paint;
@@ -99,6 +103,9 @@ namespace Digital_Canvas
         //identifying when the mouse is down on the canvas panel
         private void CanvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            //save current bitmap before changing it
+            undoList.Push(new Bitmap(bmpCanvas));
+
             cursorLocationA = e.Location;
             cursorLocationB = e.Location;
 
@@ -428,6 +435,9 @@ namespace Digital_Canvas
         //rotate bmpcanvas +90°
         private void rotate90ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //save current bitmap before changing it
+            undoList.Push(new Bitmap(bmpCanvas));
+            
             bmpCanvas.RotateFlip(RotateFlipType.Rotate90FlipNone);
             transformations.Add("plus90");
             fitPanelToBmp();
@@ -437,6 +447,9 @@ namespace Digital_Canvas
         //rotate bmpccanvas +180°
         private void rotate180ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //save current bitmap before changing it
+            undoList.Push(new Bitmap(bmpCanvas));
+
             bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
             transformations.Add("plus180");
             fitPanelToBmp();
@@ -445,6 +458,9 @@ namespace Digital_Canvas
         //rotate bmpcanvas -90°
         private void rotate90ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            //save current bitmap before changing it
+            undoList.Push(new Bitmap(bmpCanvas));
+
             bmpCanvas.RotateFlip(RotateFlipType.Rotate270FlipNone);
             transformations.Add("minus90");
             fitPanelToBmp();
@@ -452,7 +468,11 @@ namespace Digital_Canvas
         }
         //iterate through transformations list and apply opposite transformation
         private void resetRotationToolStripMenuItem_Click(object sender, EventArgs e)
-        {   //for all historical transformations
+        {   
+            //save current bitmap before changing it
+            undoList.Push(new Bitmap(bmpCanvas));
+
+            //for all historical transformations
             for (int i = 0;i<transformations.Count;i++)
             {   //if currently considered transformation is a plus 90 rotate
                 if (transformations[i]=="plus90")
@@ -479,7 +499,31 @@ namespace Digital_Canvas
             CanvasPanel.Invalidate();
         }
 
-       
+        //undo a change by restoring a previous bitmap
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //error checking
+            if (undoList.Count != 0)
+            {
+                //add current bitmap to redolist
+                redoList.Push(new Bitmap(bmpCanvas));
+                //sets current bitmap to last change and removes it from undoList
+                bmpCanvas = new Bitmap(undoList.Pop());
+                //update canvas
+                CanvasPanel.Invalidate();   
+            }
+        }
+        
+        //same as undo
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (redoList.Count != 0)
+            {
+                undoList.Push(new Bitmap(bmpCanvas));
+                bmpCanvas = new Bitmap(redoList.Pop());
+                CanvasPanel.Invalidate();   
+            }
+        }
     }
 
 }
