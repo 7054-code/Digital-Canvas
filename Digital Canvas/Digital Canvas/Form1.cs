@@ -39,19 +39,10 @@ namespace Digital_Canvas
         //simple list of transformations used to reset bmpcanvas back to start
         List<string> transformations = new List<string>();
 
-        //variables of viewCanvas i.e. the 'temporary' canvas the user actually sees on the screen
-        //as opposed to bmpCanvas which is the bmp which is not changed by these variable
-        //and is used for drawing to, exporting etc
-        //the zoom scaling for viewCanvas
+        //the zoom scaling 
         private float zoomScale = 1f;
-        //the offset used to center the zoom
-     
-        
-        private SizeF viewSize = new SizeF(0f,0f);
-
-
-        //the starting position of viewCanvas on the screen
-
+    
+        //the position of the bmp on the canvas as displayed to the user
         private PointF canvasPosition = PointF.Empty;
         
         
@@ -76,20 +67,8 @@ namespace Digital_Canvas
         }
         //handles painting (obviously) but also making a new bmp which is a clone of the original (the bmp which is saved when you save) but is altered by the zoom level
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
-        { 
-            
-
-           label1.Text = String.Concat(zoomScale);
-       
-             viewSize.Height = bmpCanvas.Size.Height*zoomScale;
-             viewSize.Width = bmpCanvas.Size.Width*zoomScale;
-             
-         
-
-
-           
-            e.Graphics.DrawImage(bmpCanvas, canvasPosition.X-(viewSize.Width/2),canvasPosition.Y-(viewSize.Height/2),viewSize.Width,viewSize.Height);
-        
+        {  
+            e.Graphics.DrawImage(bmpCanvas, canvasPosition.X,canvasPosition.Y, bmpCanvas.Size.Width * zoomScale, bmpCanvas.Size.Height * zoomScale);
         }
 
         private void ColourButton_Click(object sender, EventArgs e)
@@ -238,13 +217,13 @@ namespace Digital_Canvas
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
 
-            
-            // canvasPosition.X-(viewSize.Width/2)
             //the zoomScale multiplier changes the cursor location to match the zoom level, otherwise the cursor would paint in the location at the default zoom
             //the canvasPosition addition changes the cursor to match the canvas when it gets moved up, down, left or right
-            gfx.DrawLine(pen, (cursorLocationA.X+(bmpCanvas.Width/2)-canvasPosition.X) ,(cursorLocationA.Y + (bmpCanvas.Height / 2) - canvasPosition.Y) ,( cursorLocationB.X + (bmpCanvas.Width / 2) - canvasPosition.X) , (cursorLocationB.Y + (bmpCanvas.Height / 2) - canvasPosition.Y) );
-
-
+            gfx.DrawLine(pen,
+              (cursorLocationA.X - canvasPosition.X) / zoomScale ,
+              (cursorLocationA.Y - canvasPosition.Y) / zoomScale ,
+              (cursorLocationB.X - canvasPosition.X) / zoomScale ,
+              (cursorLocationB.Y - canvasPosition.Y) / zoomScale );
 
             //update panel to show changes - results in .Paint event so _Paint method is called
             CanvasPanel.Invalidate();
@@ -611,7 +590,7 @@ namespace Digital_Canvas
         private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-            zoomScale = zoomScale * 0.9f;             //magic numbers are bad, but this controls how much each click zooms in
+            zoomScale = zoomScale * 0.9f;             //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
            
            
             CanvasPanel.Invalidate();
@@ -619,7 +598,7 @@ namespace Digital_Canvas
 
         private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            zoomScale = zoomScale * 1.1f;               //magic numbers are bad, but this controls how much each click zooms out
+            zoomScale = zoomScale * 1.1f;              
                    
             
             CanvasPanel.Invalidate();

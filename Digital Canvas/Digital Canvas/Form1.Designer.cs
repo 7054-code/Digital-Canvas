@@ -90,8 +90,6 @@ namespace Digital_Canvas
             this.LeftToolbarPanel = new System.Windows.Forms.Panel();
             this.PaintbrushButton = new System.Windows.Forms.Button();
             this.PencilButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CanvasPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToolOpacitySlider)).BeginInit();
@@ -115,11 +113,10 @@ namespace Digital_Canvas
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CanvasPanel.BackColor = System.Drawing.Color.Transparent;
-            this.CanvasPanel.Controls.Add(this.label1);
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(579, 592);
+            this.CanvasPanel.Size = new System.Drawing.Size(580, 592);
             this.CanvasPanel.TabIndex = 4;
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
             this.CanvasPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseMove);
@@ -583,7 +580,7 @@ namespace Digital_Canvas
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(865, 592);
-            this.splitContainer1.SplitterDistance = 577;
+            this.splitContainer1.SplitterDistance = 578;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
@@ -617,7 +614,7 @@ namespace Digital_Canvas
             this.layersPanel.Location = new System.Drawing.Point(-2, 2);
             this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 433);
+            this.layersPanel.Size = new System.Drawing.Size(284, 434);
             this.layersPanel.TabIndex = 10;
             // 
             // TopToolbarPanel
@@ -670,17 +667,6 @@ namespace Digital_Canvas
             this.PencilButton.UseVisualStyleBackColor = false;
             this.PencilButton.Click += new System.EventHandler(this.PencilButton_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(340, 116);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -695,8 +681,6 @@ namespace Digital_Canvas
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Digital Canvas";
-            this.CanvasPanel.ResumeLayout(false);
-            this.CanvasPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -782,7 +766,6 @@ namespace Digital_Canvas
         private ToolStripMenuItem downToolStripMenuItem;
         private ToolStripMenuItem leftToolStripMenuItem;
         private ToolStripMenuItem rightToolStripMenuItem;
-        private Label label1;
     }
 }
 
