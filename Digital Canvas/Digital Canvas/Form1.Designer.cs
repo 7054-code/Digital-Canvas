@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -66,11 +65,6 @@ namespace Digital_Canvas
             this.rotate90ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.flipHorizontallyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flipVerticallyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.upToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.leftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ToolOpacitySlider = new System.Windows.Forms.TrackBar();
@@ -109,17 +103,16 @@ namespace Digital_Canvas
             // 
             // CanvasPanel
             // 
-            this.CanvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CanvasPanel.BackColor = System.Drawing.Color.Transparent;
+            this.CanvasPanel.BackColor = System.Drawing.Color.White;
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
+            this.CanvasPanel.Location = new System.Drawing.Point(27, 22);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(582, 592);
+            this.CanvasPanel.Size = new System.Drawing.Size(461, 378);
             this.CanvasPanel.TabIndex = 4;
-            this.CanvasPanel.Enter += new System.EventHandler(this.CanvasPanel_Enter);
+            this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
+            this.CanvasPanel.MouseEnter += new System.EventHandler(this.CanvasPanel_MouseEnter);
+            this.CanvasPanel.MouseLeave += new System.EventHandler(this.CanvasPanel_MouseLeave);
             this.CanvasPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseMove);
             // 
             // menuStrip1
@@ -224,7 +217,6 @@ namespace Digital_Canvas
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.importToolStripMenuItem.Text = "Import";
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
@@ -300,8 +292,7 @@ namespace Digital_Canvas
             this.percentViewToolStripMenuItem,
             this.rotateToolStripMenuItem,
             this.flipHorizontallyToolStripMenuItem,
-            this.flipVerticallyToolStripMenuItem,
-            this.moveToolStripMenuItem});
+            this.flipVerticallyToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
             this.viewToolStripMenuItem.Text = "View";
@@ -309,25 +300,20 @@ namespace Digital_Canvas
             // zoomInToolStripMenuItem
             // 
             this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.zoomInToolStripMenuItem.Text = "Zoom In";
-            this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
             // 
             // zoomOutToolStripMenuItem
             // 
             this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.zoomOutToolStripMenuItem.Text = "Zoom Out";
-            this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
             // 
             // percentViewToolStripMenuItem
             // 
             this.percentViewToolStripMenuItem.Name = "percentViewToolStripMenuItem";
-            this.percentViewToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.percentViewToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.percentViewToolStripMenuItem.Text = "100% View";
-            this.percentViewToolStripMenuItem.Click += new System.EventHandler(this.percentViewToolStripMenuItem_Click);
             // 
             // rotateToolStripMenuItem
             // 
@@ -337,7 +323,7 @@ namespace Digital_Canvas
             this.rotate180ToolStripMenuItem,
             this.rotate90ToolStripMenuItem1});
             this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.rotateToolStripMenuItem.Text = "Rotate";
             // 
             // resetRotationToolStripMenuItem
@@ -371,60 +357,14 @@ namespace Digital_Canvas
             // flipHorizontallyToolStripMenuItem
             // 
             this.flipHorizontallyToolStripMenuItem.Name = "flipHorizontallyToolStripMenuItem";
-            this.flipHorizontallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.flipHorizontallyToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.flipHorizontallyToolStripMenuItem.Text = "Flip Horizontally";
-            this.flipHorizontallyToolStripMenuItem.Click += new System.EventHandler(this.flipHorizontallyToolStripMenuItem_Click);
             // 
             // flipVerticallyToolStripMenuItem
             // 
             this.flipVerticallyToolStripMenuItem.Name = "flipVerticallyToolStripMenuItem";
-            this.flipVerticallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.flipVerticallyToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.flipVerticallyToolStripMenuItem.Text = "Flip Vertically";
-            this.flipVerticallyToolStripMenuItem.Click += new System.EventHandler(this.flipVerticallyToolStripMenuItem_Click);
-            // 
-            // moveToolStripMenuItem
-            // 
-            this.moveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.upToolStripMenuItem,
-            this.downToolStripMenuItem,
-            this.leftToolStripMenuItem,
-            this.rightToolStripMenuItem});
-            this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.moveToolStripMenuItem.Text = "Move";
-            // 
-            // upToolStripMenuItem
-            // 
-            this.upToolStripMenuItem.Name = "upToolStripMenuItem";
-            this.upToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.upToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.upToolStripMenuItem.Text = "Up";
-            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
-            // 
-            // downToolStripMenuItem
-            // 
-            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
-            this.downToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
-            this.downToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.downToolStripMenuItem.Text = "Down";
-            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
-            // 
-            // leftToolStripMenuItem
-            // 
-            this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
-            this.leftToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
-            this.leftToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.leftToolStripMenuItem.Text = "Left";
-            this.leftToolStripMenuItem.Click += new System.EventHandler(this.leftToolStripMenuItem_Click);
-            // 
-            // rightToolStripMenuItem
-            // 
-            this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
-            this.rightToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
-            this.rightToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.rightToolStripMenuItem.Text = "Right";
-            this.rightToolStripMenuItem.Click += new System.EventHandler(this.rightToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -541,6 +481,7 @@ namespace Digital_Canvas
             // PenButton
             // 
             this.PenButton.BackColor = System.Drawing.Color.Transparent;
+            this.PenButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.penIcon;
             this.PenButton.FlatAppearance.BorderSize = 0;
             this.PenButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PenButton.ForeColor = System.Drawing.SystemColors.Control;
@@ -554,6 +495,7 @@ namespace Digital_Canvas
             // EraserButton
             // 
             this.EraserButton.BackColor = System.Drawing.Color.Transparent;
+            this.EraserButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.eraserIcon;
             this.EraserButton.FlatAppearance.BorderSize = 0;
             this.EraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EraserButton.ForeColor = System.Drawing.SystemColors.Control;
@@ -566,10 +508,6 @@ namespace Digital_Canvas
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(39, 51);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
@@ -583,14 +521,12 @@ namespace Digital_Canvas
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(865, 592);
-            this.splitContainer1.SplitterDistance = 580;
+            this.splitContainer1.SplitterDistance = 574;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer2.Location = new System.Drawing.Point(4, 0);
             this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer2.Name = "splitContainer2";
@@ -610,20 +546,15 @@ namespace Digital_Canvas
             // 
             // layersPanel
             // 
-            this.layersPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.layersPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.layersPanel.Location = new System.Drawing.Point(-2, 2);
             this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 436);
+            this.layersPanel.Size = new System.Drawing.Size(284, 430);
             this.layersPanel.TabIndex = 10;
             // 
             // TopToolbarPanel
             // 
-            this.TopToolbarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TopToolbarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.TopToolbarPanel.Location = new System.Drawing.Point(0, 22);
             this.TopToolbarPanel.Margin = new System.Windows.Forms.Padding(2);
@@ -647,6 +578,7 @@ namespace Digital_Canvas
             // PaintbrushButton
             // 
             this.PaintbrushButton.BackColor = System.Drawing.Color.Transparent;
+            this.PaintbrushButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.penIcon;
             this.PaintbrushButton.FlatAppearance.BorderSize = 0;
             this.PaintbrushButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PaintbrushButton.ForeColor = System.Drawing.SystemColors.Control;
@@ -660,6 +592,7 @@ namespace Digital_Canvas
             // PencilButton
             // 
             this.PencilButton.BackColor = System.Drawing.Color.Transparent;
+            this.PencilButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.penIcon;
             this.PencilButton.FlatAppearance.BorderSize = 0;
             this.PencilButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PencilButton.ForeColor = System.Drawing.SystemColors.Control;
@@ -681,6 +614,7 @@ namespace Digital_Canvas
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Digital Canvas";
@@ -704,11 +638,6 @@ namespace Digital_Canvas
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -764,11 +693,6 @@ namespace Digital_Canvas
         private Label OpacityLabel;
         private TrackBar ToolSizeSlider;
         private TrackBar ToolOpacitySlider;
-        private ToolStripMenuItem moveToolStripMenuItem;
-        private ToolStripMenuItem upToolStripMenuItem;
-        private ToolStripMenuItem downToolStripMenuItem;
-        private ToolStripMenuItem leftToolStripMenuItem;
-        private ToolStripMenuItem rightToolStripMenuItem;
     }
 }
 
