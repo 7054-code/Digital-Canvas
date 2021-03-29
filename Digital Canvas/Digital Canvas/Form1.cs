@@ -56,6 +56,12 @@ namespace Digital_Canvas
 
             //setting bitmap to CanvasPanel size
             bmpCanvas = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
+            //fill bitmap with background colour
+            var gfx = Graphics.FromImage(bmpCanvas);
+            using (SolidBrush brush = new SolidBrush(Color.FromArgb(255, 255,255)))
+            {
+                gfx.FillRectangle(brush, 0, 0, CanvasPanel.Width, CanvasPanel.Height);
+            }
             //when the .Paint event happens -> do the _Paint method (happens on .Invalidate() and startup)
             CanvasPanel.Paint += CanvasPanel_Paint;
             //prevents flickering when drawing on screen
@@ -211,6 +217,8 @@ namespace Digital_Canvas
         //passes pen properties through and renders line drawn
         private void DrawLineCanvas(Pen pen)
         {
+            
+
             //instead of drawing onto the canvaspanel directly, draw onto the bitmap
             var gfx = Graphics.FromImage(bmpCanvas);
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
