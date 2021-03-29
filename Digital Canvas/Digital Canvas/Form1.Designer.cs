@@ -118,11 +118,8 @@ namespace Digital_Canvas
             this.CanvasPanel.Name = "CanvasPanel";
             this.CanvasPanel.Size = new System.Drawing.Size(582, 592);
             this.CanvasPanel.TabIndex = 4;
-            this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             this.CanvasPanel.Enter += new System.EventHandler(this.CanvasPanel_Enter);
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
-            this.CanvasPanel.MouseEnter += new System.EventHandler(this.CanvasPanel_MouseEnter);
-            this.CanvasPanel.MouseLeave += new System.EventHandler(this.CanvasPanel_MouseLeave);
             this.CanvasPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseMove);
             // 
             // menuStrip1
@@ -227,6 +224,7 @@ namespace Digital_Canvas
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.importToolStripMenuItem.Text = "Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
@@ -543,7 +541,6 @@ namespace Digital_Canvas
             // PenButton
             // 
             this.PenButton.BackColor = System.Drawing.Color.Transparent;
-            this.PenButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.penIcon;
             this.PenButton.FlatAppearance.BorderSize = 0;
             this.PenButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PenButton.ForeColor = System.Drawing.SystemColors.Control;
@@ -557,7 +554,6 @@ namespace Digital_Canvas
             // EraserButton
             // 
             this.EraserButton.BackColor = System.Drawing.Color.Transparent;
-            this.EraserButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.eraserIcon;
             this.EraserButton.FlatAppearance.BorderSize = 0;
             this.EraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EraserButton.ForeColor = System.Drawing.SystemColors.Control;
@@ -651,7 +647,6 @@ namespace Digital_Canvas
             // PaintbrushButton
             // 
             this.PaintbrushButton.BackColor = System.Drawing.Color.Transparent;
-            this.PaintbrushButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.penIcon;
             this.PaintbrushButton.FlatAppearance.BorderSize = 0;
             this.PaintbrushButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PaintbrushButton.ForeColor = System.Drawing.SystemColors.Control;
@@ -665,7 +660,6 @@ namespace Digital_Canvas
             // PencilButton
             // 
             this.PencilButton.BackColor = System.Drawing.Color.Transparent;
-            this.PencilButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.penIcon;
             this.PencilButton.FlatAppearance.BorderSize = 0;
             this.PencilButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PencilButton.ForeColor = System.Drawing.SystemColors.Control;
