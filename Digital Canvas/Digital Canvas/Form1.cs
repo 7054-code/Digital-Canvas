@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -20,7 +21,7 @@ namespace Digital_Canvas
 
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
         Bitmap bmpCanvas;
-        
+
         //stacks that stores list of changes for undo/redo
         private Stack<Bitmap> undoList = new Stack<Bitmap>();
         private Stack<Bitmap> redoList = new Stack<Bitmap>();
@@ -32,6 +33,14 @@ namespace Digital_Canvas
         Point cursorLocationA;
         Point cursorLocationB;
 
+        //check for whether colour has been changed or not
+        Boolean pencilColourChanged = true;
+        Boolean paintbrushColourChanged = true;
+
+        //brush imported images
+        Bitmap pencilImage = new Bitmap(@"C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\Resources\Pencil.png");
+        Bitmap paintbrushImage = new Bitmap(@"C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\Resources\Paintbrush.png");
+
         //used to check if file exists already for 'Save'
         string saveFileName;
 
@@ -41,7 +50,6 @@ namespace Digital_Canvas
         {
             InitializeComponent();
             ColourButton.BackColor = Color.Black;
-            EraserButton.BackColor = Color.Transparent;
 
             //setting bitmap to CanvasPanel size
             bmpCanvas = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
@@ -51,8 +59,6 @@ namespace Digital_Canvas
             typeof(Panel).InvokeMember("DoubleBuffered",
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, CanvasPanel,
                 new object[] { true });
-
-          
         }
 
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
@@ -68,35 +74,36 @@ namespace Digital_Canvas
                 {
                     ColourButton.BackColor = diag.Color;
                 }
+            pencilColourChanged = true;
+            paintbrushColourChanged = true;
         }
 
         //movement on canvas panel for brush tool movements
         private void CanvasPanel_MouseMove(object sender, MouseEventArgs e)
         {
+            var gfx = Graphics.FromImage(bmpCanvas);
+
             if (e.Button == MouseButtons.Left)
             {
                 cursorLocationA = cursorLocationB;
                 cursorLocationB = e.Location;
+
                 if (currentTool == Tool.PEN)
                 {
                     ToolPenDrawing();
                 }
-
                 if (currentTool == Tool.PENCIL)
                 {
                     ToolPencilDrawing();
                 }
-
                 if (currentTool == Tool.PAINTBRUSH)
                 {
                     ToolPaintbrushDrawing();
                 }
-
                 if (currentTool == Tool.ERASER)
                 {
                     ToolErasing();
                 }
-                
             }
         }
 
@@ -125,7 +132,6 @@ namespace Digital_Canvas
             {
                 ToolErasing();
             }
-
         }
 
         //pen button icon click event for pen tool selected
@@ -188,14 +194,82 @@ namespace Digital_Canvas
 
         private void ToolPencilDrawing()
         {
-            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, ColourButton.BackColor), (int)ToolSizeNumericUpDown.Value);
-            DrawLineCanvas(pen);
+            int height = pencilImage.Height;
+            int width = pencilImage.Width;
+
+            float diameter = (float)ToolSizeNumericUpDown.Value;
+            float radius = diameter / 2;
+
+            var gfx = Graphics.FromImage(bmpCanvas);
+
+            //changing pixel colours for pencil
+            if (pencilColourChanged == true)
+            {
+                //nested for loop to go through every pixel height x width
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (pencilImage.GetPixel(y, x).A == 0)
+                        {
+                            //do nothing and keep transparent pixels
+                        }
+                        else
+                        {
+                            //change pencil colour to user choice by changing the pixel colour
+                            pencilImage.SetPixel(y, x, Color.FromArgb((int)ToolOpacityNumericUpDown.Value, ColourButton.BackColor));
+                        }
+                    }
+                }
+                pencilColourChanged = false;
+            }
+            
+            //gfx.DrawImage(newPencilImage, cursorLocationA.X - radius, cursorLocationA.Y - radius, diameter, diameter);
+            gfx.DrawImage(pencilImage, cursorLocationA.X - radius, cursorLocationA.Y - radius, diameter, diameter);
+            //update panel to show changes - results in .Paint event so _Paint method is called
+            CanvasPanel.Invalidate();
+            //frees up system resources since it isn't needed anymore
+            gfx.Dispose();
         }
 
         private void ToolPaintbrushDrawing()
         {
-            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, ColourButton.BackColor), (int)ToolSizeNumericUpDown.Value);
-            DrawLineCanvas(pen);
+            int height = paintbrushImage.Height;
+            int width = paintbrushImage.Width;
+
+            float diameter = (float)ToolSizeNumericUpDown.Value;
+            float radius = diameter / 2;
+
+            var gfx = Graphics.FromImage(bmpCanvas);
+
+            //changing pixel colours for paintbrush
+            if (paintbrushColourChanged == true)
+            {
+                //nested for loop to go through every pixel height x width
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (paintbrushImage.GetPixel(y, x).A == 0)
+                        {
+                            //do nothing and keep transparent pixels
+                        }
+                        else
+                        {
+                            //change paintbrush colour to user choice by changing the pixel colour
+                            paintbrushImage.SetPixel(y, x, Color.FromArgb((int)ToolOpacityNumericUpDown.Value, ColourButton.BackColor));
+                        }
+                    }
+                }
+                paintbrushColourChanged = false;
+            }
+
+            gfx.DrawImage(paintbrushImage, cursorLocationA.X - radius, cursorLocationA.Y - radius, diameter, diameter);
+
+            //update panel to show changes - results in .Paint event so _Paint method is called
+            CanvasPanel.Invalidate();
+            //frees up system resources since it isn't needed anymore
+            gfx.Dispose();
         }
 
         //passes pen properties through and renders line drawn
@@ -441,7 +515,6 @@ namespace Digital_Canvas
             bmpCanvas.RotateFlip(RotateFlipType.Rotate90FlipNone);
             transformations.Add("plus90");
             fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             //update canvas
             CanvasPanel.Invalidate();
         }
@@ -454,7 +527,6 @@ namespace Digital_Canvas
             bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
             transformations.Add("plus180");
             fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             CanvasPanel.Invalidate();
         }
         //rotate bmpcanvas -90°
@@ -466,7 +538,6 @@ namespace Digital_Canvas
             bmpCanvas.RotateFlip(RotateFlipType.Rotate270FlipNone);
             transformations.Add("minus90");
             fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             CanvasPanel.Invalidate();
         }
         //iterate through transformations list and apply opposite transformation
@@ -498,7 +569,6 @@ namespace Digital_Canvas
             transformations.Clear();
             //use the function which resizes the panel to the dimensions of the bmppanel
             fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
             //redraw the panel
             CanvasPanel.Invalidate();
         }
@@ -525,52 +595,19 @@ namespace Digital_Canvas
             {
                 undoList.Push(new Bitmap(bmpCanvas));
                 bmpCanvas = new Bitmap(redoList.Pop());
-                CanvasPanel.Invalidate();
+                CanvasPanel.Invalidate();   
             }
         }
-        
-        //import image and resize to fill canvas if larger than it
-        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void CanvasPanel_MouseEnter(object sender, EventArgs e)
         {
-            //allows user to find an image
-            OpenFileDialog fileExplorerDialog = new OpenFileDialog
-            {
-                //automatically save as this file extension
-                Filter = "Image Files|*.bmp; *.jpg; *.jpeg; *.png; *.gif",
-                Title = "Import image"
-            };
-            //open popup and  check that user picked a location
-            if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
-            {
-                //store chosen image
-                Bitmap importedImage = new Bitmap(fileExplorerDialog.OpenFile());
-                
-                //if imported image width and height is larger than bmpCanvas
-                if ((importedImage.Width > bmpCanvas.Width) && (importedImage.Height > bmpCanvas.Height))
-                {
-                    bmpCanvas = new Bitmap(importedImage, bmpCanvas.Size);
-                }
-                //if width is larger than bmpcanvas width
-                else if ((importedImage.Width > bmpCanvas.Width) && (importedImage.Height < bmpCanvas.Height))
-                {
-                    bmpCanvas = new Bitmap(importedImage, new Size(bmpCanvas.Width, importedImage.Height));
-                }
-                //if height is larger than bmpcanvas height
-                else if ((importedImage.Width < bmpCanvas.Width) && (importedImage.Height > bmpCanvas.Height))
-                {
-                    bmpCanvas = new Bitmap(importedImage, new Size(importedImage.Width, bmpCanvas.Height));
-                }
-                //if imported image smaller than bmpcanvas
-                else
-                {
-                    bmpCanvas = new Bitmap(importedImage);
-                }
-                
-                //make it match the entire canvas
-                bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
-                //update canvas
-                CanvasPanel.Invalidate();
-            }
+            Cursor.Hide();
+        }
+
+        private void CanvasPanel_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor.Show();
         }
     }
+
 }
