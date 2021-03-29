@@ -116,7 +116,7 @@ namespace Digital_Canvas
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(580, 592);
+            this.CanvasPanel.Size = new System.Drawing.Size(581, 592);
             this.CanvasPanel.TabIndex = 4;
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
             this.CanvasPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseMove);
@@ -309,7 +309,7 @@ namespace Digital_Canvas
             // 
             this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
             this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zoomInToolStripMenuItem.Text = "Zoom In";
             this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
             // 
@@ -317,14 +317,14 @@ namespace Digital_Canvas
             // 
             this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
             this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zoomOutToolStripMenuItem.Text = "Zoom Out";
             this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
             // 
             // percentViewToolStripMenuItem
             // 
             this.percentViewToolStripMenuItem.Name = "percentViewToolStripMenuItem";
-            this.percentViewToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.percentViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.percentViewToolStripMenuItem.Text = "100% View";
             this.percentViewToolStripMenuItem.Click += new System.EventHandler(this.percentViewToolStripMenuItem_Click);
             // 
@@ -336,7 +336,7 @@ namespace Digital_Canvas
             this.rotate180ToolStripMenuItem,
             this.rotate90ToolStripMenuItem1});
             this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rotateToolStripMenuItem.Text = "Rotate";
             // 
             // resetRotationToolStripMenuItem
@@ -370,13 +370,13 @@ namespace Digital_Canvas
             // flipHorizontallyToolStripMenuItem
             // 
             this.flipHorizontallyToolStripMenuItem.Name = "flipHorizontallyToolStripMenuItem";
-            this.flipHorizontallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.flipHorizontallyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.flipHorizontallyToolStripMenuItem.Text = "Flip Horizontally";
             // 
             // flipVerticallyToolStripMenuItem
             // 
             this.flipVerticallyToolStripMenuItem.Name = "flipVerticallyToolStripMenuItem";
-            this.flipVerticallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.flipVerticallyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.flipVerticallyToolStripMenuItem.Text = "Flip Vertically";
             // 
             // moveToolStripMenuItem
@@ -387,7 +387,7 @@ namespace Digital_Canvas
             this.leftToolStripMenuItem,
             this.rightToolStripMenuItem});
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moveToolStripMenuItem.Text = "Move";
             // 
             // upToolStripMenuItem
@@ -580,7 +580,7 @@ namespace Digital_Canvas
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(865, 592);
-            this.splitContainer1.SplitterDistance = 578;
+            this.splitContainer1.SplitterDistance = 579;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
@@ -614,7 +614,7 @@ namespace Digital_Canvas
             this.layersPanel.Location = new System.Drawing.Point(-2, 2);
             this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 434);
+            this.layersPanel.Size = new System.Drawing.Size(284, 435);
             this.layersPanel.TabIndex = 10;
             // 
             // TopToolbarPanel

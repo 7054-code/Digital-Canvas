@@ -590,17 +590,17 @@ namespace Digital_Canvas
         private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-            zoomScale = zoomScale * 0.9f;             //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
-           
-           
+            zoomScale = zoomScale *1.1f;            //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
+
+
             CanvasPanel.Invalidate();
         }
 
         private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            zoomScale = zoomScale * 1.1f;              
-                   
-            
+            zoomScale = zoomScale * 0.9f;
+
+
             CanvasPanel.Invalidate();
         }
 
