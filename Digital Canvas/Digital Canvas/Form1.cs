@@ -675,5 +675,22 @@ namespace Digital_Canvas
         {
             
         }
+        private void flipHorizontallyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //save current bitmap before changing it
+            undoList.Push(new Bitmap(bmpCanvas));
+            bmpCanvas.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            transformations.Add("flipX");
+            CanvasPanel.Invalidate();
+        }
+
+        private void flipVerticallyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //save current bitmap before changing it
+            undoList.Push(new Bitmap(bmpCanvas));
+            bmpCanvas.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            transformations.Add("flipY");
+            CanvasPanel.Invalidate();
+        }
     }
 }
