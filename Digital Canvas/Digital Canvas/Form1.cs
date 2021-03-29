@@ -534,8 +534,16 @@ namespace Digital_Canvas
                 {
                     bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
                 }
-                
-                
+                else if (transformations[i] == "flipX")
+                {
+                    bmpCanvas.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                }
+                else if (transformations[i] == "flipY")
+                {
+                    bmpCanvas.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                }
+
+
             }
             //clear the transformations history
             transformations.Clear();

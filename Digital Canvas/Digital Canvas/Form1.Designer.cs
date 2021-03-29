@@ -373,12 +373,14 @@ namespace Digital_Canvas
             this.flipHorizontallyToolStripMenuItem.Name = "flipHorizontallyToolStripMenuItem";
             this.flipHorizontallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.flipHorizontallyToolStripMenuItem.Text = "Flip Horizontally";
+            this.flipHorizontallyToolStripMenuItem.Click += new System.EventHandler(this.flipHorizontallyToolStripMenuItem_Click);
             // 
             // flipVerticallyToolStripMenuItem
             // 
             this.flipVerticallyToolStripMenuItem.Name = "flipVerticallyToolStripMenuItem";
             this.flipVerticallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.flipVerticallyToolStripMenuItem.Text = "Flip Vertically";
+            this.flipVerticallyToolStripMenuItem.Click += new System.EventHandler(this.flipVerticallyToolStripMenuItem_Click);
             // 
             // moveToolStripMenuItem
             // 
