@@ -71,9 +71,9 @@ namespace Digital_Canvas
            
           
         }
-        //handles painting (obviously) but also making a new bmp which is a clone of the original (the bmp which is saved when you save) but is altered by the zoom level
+        
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
-        {  
+        {   //this draws the bmpcanvas at its location with the required scaling
             e.Graphics.DrawImage(bmpCanvas, canvasPosition.X,canvasPosition.Y, bmpCanvas.Size.Width * zoomScale, bmpCanvas.Size.Height * zoomScale);
         }
 
