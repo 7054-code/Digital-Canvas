@@ -20,6 +20,7 @@ namespace Digital_Canvas
 
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
         Bitmap bmpCanvas;
+       
         
         //stacks that stores list of changes for undo/redo
         private Stack<Bitmap> undoList = new Stack<Bitmap>();
@@ -37,28 +38,44 @@ namespace Digital_Canvas
 
         //simple list of transformations used to reset bmpcanvas back to start
         List<string> transformations = new List<string>();
+
+        //the zoom scaling 
+        private float zoomScale = 1f;
+    
+        //the position of the bmp on the canvas as displayed to the user
+        private PointF canvasPosition = PointF.Empty;
+        
+        
+
         public MainForm()
         {
             InitializeComponent();
+
             ColourButton.BackColor = Color.Black;
             EraserButton.BackColor = Color.Transparent;
 
             //setting bitmap to CanvasPanel size
             bmpCanvas = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
+            //fill bitmap with background colour
+            var gfx = Graphics.FromImage(bmpCanvas);
+            using (SolidBrush brush = new SolidBrush(Color.FromArgb(255, 255,255)))
+            {
+                gfx.FillRectangle(brush, 0, 0, CanvasPanel.Width, CanvasPanel.Height);
+            }
             //when the .Paint event happens -> do the _Paint method (happens on .Invalidate() and startup)
             CanvasPanel.Paint += CanvasPanel_Paint;
+            this.MouseWheel += new MouseEventHandler(splitContainer1_MouseWheel);
             //prevents flickering when drawing on screen
             typeof(Panel).InvokeMember("DoubleBuffered",
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, CanvasPanel,
                 new object[] { true });
-
+           
           
         }
-
+        
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
-        {
-            //draw updated bitmap on canvaspanel
-            e.Graphics.DrawImage(bmpCanvas, Point.Empty);
+        {   //this draws the bmpcanvas at its location with the required scaling
+            e.Graphics.DrawImage(bmpCanvas, canvasPosition.X,canvasPosition.Y, bmpCanvas.Size.Width * zoomScale, bmpCanvas.Size.Height * zoomScale);
         }
 
         private void ColourButton_Click(object sender, EventArgs e)
@@ -99,7 +116,27 @@ namespace Digital_Canvas
                 
             }
         }
+        private void splitContainer1_MouseWheel(object sender, MouseEventArgs e)
+        {
+           
+            if (e.Delta > 0)
+               
+                {
+               
+                    zoomScale = zoomScale * 1.1f;            //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
 
+                    
+                    CanvasPanel.Invalidate();
+                }
+
+            if (e.Delta < 0)
+            {
+                zoomScale = zoomScale * 0.9f;
+
+
+                CanvasPanel.Invalidate();
+            }
+        }
         //identifying when the mouse is down on the canvas panel
         private void CanvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -201,12 +238,21 @@ namespace Digital_Canvas
         //passes pen properties through and renders line drawn
         private void DrawLineCanvas(Pen pen)
         {
+            
+
             //instead of drawing onto the canvaspanel directly, draw onto the bitmap
             var gfx = Graphics.FromImage(bmpCanvas);
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
-            gfx.DrawLine(pen, cursorLocationA, cursorLocationB);
+
+            //the zoomScale multiplier changes the cursor location to match the zoom level, otherwise the cursor would paint in the location at the default zoom
+            //the canvasPosition addition changes the cursor to match the canvas when it gets moved up, down, left or right
+            gfx.DrawLine(pen,
+              (cursorLocationA.X - canvasPosition.X) / zoomScale ,
+              (cursorLocationA.Y - canvasPosition.Y) / zoomScale ,
+              (cursorLocationB.X - canvasPosition.X) / zoomScale ,
+              (cursorLocationB.Y - canvasPosition.Y) / zoomScale );
 
             //update panel to show changes - results in .Paint event so _Paint method is called
             CanvasPanel.Invalidate();
@@ -225,17 +271,18 @@ namespace Digital_Canvas
                 if(form2.ShowDialog() == DialogResult.OK) 
                 {
                     //set panel dimensions to user input
-                    CanvasPanel.Width = form2.InputWidth;
-                    CanvasPanel.Height = form2.InputHeight;
+                    //CanvasPanel.Width = form2.InputWidth;
+                   // CanvasPanel.Height = form2.InputHeight;
+
                     //create blank bitmap with updated dimensions
-                    Bitmap tempBitmap = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
+                    Bitmap tempBitmap = new Bitmap(form2.InputWidth,form2.InputHeight);
                     using (Graphics g = Graphics.FromImage(tempBitmap))
                     {
                         //draw original bitmap on the new bitmap keeping scale the same
                         g.DrawImage(bmpCanvas, 0, 0, bmpCanvas.Width, bmpCanvas.Height);
                     }
                     //replace original bitmap with updated bitmap and new dimensions
-                    bmpCanvas = new Bitmap(tempBitmap, CanvasPanel.Size);
+                    bmpCanvas = new Bitmap(tempBitmap, tempBitmap.Size);
                     //update canvas display
                     CanvasPanel.Invalidate();
                 }
@@ -427,11 +474,7 @@ namespace Digital_Canvas
                     break;
             }
         }
-        //fit canvas panel to bmpcanvas
-        private void fitPanelToBmp()
-        {
-            CanvasPanel.Size = bmpCanvas.Size;
-        }
+        
         //rotate bmpcanvas +90°
         private void rotate90ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -440,8 +483,8 @@ namespace Digital_Canvas
             
             bmpCanvas.RotateFlip(RotateFlipType.Rotate90FlipNone);
             transformations.Add("plus90");
-            fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+            
+            
             //update canvas
             CanvasPanel.Invalidate();
         }
@@ -453,8 +496,8 @@ namespace Digital_Canvas
 
             bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
             transformations.Add("plus180");
-            fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+            
+           
             CanvasPanel.Invalidate();
         }
         //rotate bmpcanvas -90°
@@ -465,8 +508,8 @@ namespace Digital_Canvas
 
             bmpCanvas.RotateFlip(RotateFlipType.Rotate270FlipNone);
             transformations.Add("minus90");
-            fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+         
+           
             CanvasPanel.Invalidate();
         }
         //iterate through transformations list and apply opposite transformation
@@ -496,9 +539,9 @@ namespace Digital_Canvas
             }
             //clear the transformations history
             transformations.Clear();
-            //use the function which resizes the panel to the dimensions of the bmppanel
-            fitPanelToBmp();
-            bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+           
+           
+            
             //redraw the panel
             CanvasPanel.Invalidate();
         }
@@ -571,6 +614,58 @@ namespace Digital_Canvas
                 //update canvas
                 CanvasPanel.Invalidate();
             }
+        }
+
+        private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            zoomScale = zoomScale *1.1f;            //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
+
+
+            CanvasPanel.Invalidate();
+        }
+
+        private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            zoomScale = zoomScale * 0.9f;
+
+
+            CanvasPanel.Invalidate();
+        }
+
+        private void percentViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            zoomScale = 1f;
+            CanvasPanel.Invalidate();
+        }
+
+        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            canvasPosition.Y = canvasPosition.Y - 20;
+            CanvasPanel.Invalidate();
+        }
+
+        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            canvasPosition.Y = canvasPosition.Y + 20;
+            CanvasPanel.Invalidate();
+        }
+
+        private void leftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            canvasPosition.X = canvasPosition.X - 20;
+            CanvasPanel.Invalidate();
+        }
+
+        private void rightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            canvasPosition.X = canvasPosition.X + 20;
+            CanvasPanel.Invalidate();
+        }
+
+        private void CanvasPanel_Enter(object sender, EventArgs e)
+        {
+            
         }
     }
 }
