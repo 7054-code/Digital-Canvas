@@ -20,7 +20,7 @@ namespace Digital_Canvas
 
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
         Bitmap bmpCanvas;
-        Bitmap bmpView;
+       
         
         //stacks that stores list of changes for undo/redo
         private Stack<Bitmap> undoList = new Stack<Bitmap>();
@@ -64,6 +64,7 @@ namespace Digital_Canvas
             }
             //when the .Paint event happens -> do the _Paint method (happens on .Invalidate() and startup)
             CanvasPanel.Paint += CanvasPanel_Paint;
+            this.MouseWheel += new MouseEventHandler(splitContainer1_MouseWheel);
             //prevents flickering when drawing on screen
             typeof(Panel).InvokeMember("DoubleBuffered",
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, CanvasPanel,
@@ -115,7 +116,27 @@ namespace Digital_Canvas
                 
             }
         }
+        private void splitContainer1_MouseWheel(object sender, MouseEventArgs e)
+        {
+           
+            if (e.Delta > 0)
+               
+                {
+               
+                    zoomScale = zoomScale * 1.1f;            //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
 
+                    
+                    CanvasPanel.Invalidate();
+                }
+
+            if (e.Delta < 0)
+            {
+                zoomScale = zoomScale * 0.9f;
+
+
+                CanvasPanel.Invalidate();
+            }
+        }
         //identifying when the mouse is down on the canvas panel
         private void CanvasPanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -642,6 +663,9 @@ namespace Digital_Canvas
             CanvasPanel.Invalidate();
         }
 
-       
+        private void CanvasPanel_Enter(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
