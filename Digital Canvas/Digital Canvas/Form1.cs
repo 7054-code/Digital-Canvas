@@ -21,8 +21,7 @@ namespace Digital_Canvas
 
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
         Bitmap bmpCanvas;
-       
-        
+
         //stacks that stores list of changes for undo/redo
         private Stack<Bitmap> undoList = new Stack<Bitmap>();
         private Stack<Bitmap> redoList = new Stack<Bitmap>();
@@ -39,9 +38,9 @@ namespace Digital_Canvas
         Boolean paintbrushColourChanged = true;
 
         //brush imported images
-        Bitmap pencilImage = new Bitmap(@"C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\Resources\Pencil.png");
-        Bitmap paintbrushImage = new Bitmap(@"C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\Resources\Paintbrush.png");
-
+        Bitmap pencilImage = new Bitmap(@Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\Resources\Pencil.png")));
+        Bitmap paintbrushImage = new Bitmap(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\Resources\Paintbrush.png")));
+        
         //used to check if file exists already for 'Save'
         string saveFileName;
 

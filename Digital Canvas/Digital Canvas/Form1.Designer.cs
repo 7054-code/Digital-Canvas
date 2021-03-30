@@ -116,7 +116,7 @@ namespace Digital_Canvas
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(582, 592);
+            this.CanvasPanel.Size = new System.Drawing.Size(585, 592);
             this.CanvasPanel.TabIndex = 4;
             this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             this.CanvasPanel.Enter += new System.EventHandler(this.CanvasPanel_Enter);
@@ -587,7 +587,7 @@ namespace Digital_Canvas
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(865, 592);
-            this.splitContainer1.SplitterDistance = 580;
+            this.splitContainer1.SplitterDistance = 583;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
@@ -621,7 +621,7 @@ namespace Digital_Canvas
             this.layersPanel.Location = new System.Drawing.Point(-2, 2);
             this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 436);
+            this.layersPanel.Size = new System.Drawing.Size(284, 439);
             this.layersPanel.TabIndex = 10;
             // 
             // TopToolbarPanel
