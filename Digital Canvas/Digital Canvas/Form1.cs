@@ -53,11 +53,15 @@ namespace Digital_Canvas
         //the position of the bmp on the canvas as displayed to the user
         private PointF canvasPosition = PointF.Empty;
 
+        //colours
+        public List<Color> colours = new List<Color>();
+        
+        
         public MainForm()
         {
             InitializeComponent();
 
-            ColourButton.BackColor = Color.Black;
+            
 
             //setting bitmap to CanvasPanel size
             bmpCanvas = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
@@ -83,13 +87,14 @@ namespace Digital_Canvas
 
         private void ColourButton_Click(object sender, EventArgs e)
         {
-            using (var diag = new ColorDialog())
-                if (diag.ShowDialog() == DialogResult.OK)
+            using (Form3 form3 = new Form3(this))
+            {
+                //if user pressed the confirm button
+                if (form3.ShowDialog() == DialogResult.OK)
                 {
-                    ColourButton.BackColor = diag.Color;
+                    CanvasPanel.Invalidate();
                 }
-            pencilColourChanged = true;
-            paintbrushColourChanged = true;
+            }
         }
 
         //movement on canvas panel for brush tool movements
