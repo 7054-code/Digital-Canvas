@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
@@ -18,10 +20,14 @@ namespace Digital_Canvas
         {
             PEN, PENCIL, PAINTBRUSH, ERASER
         }
+        
+        //each Layer has its own bitmap
+        private List<Layer> listLayers = new List<Layer>();
+        //used to know which layer is being edited
+        private string currentLayer;
 
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
         Bitmap bmpCanvas;
-
         //stacks that stores list of changes for undo/redo
         private Stack<Bitmap> undoList = new Stack<Bitmap>();
         private Stack<Bitmap> redoList = new Stack<Bitmap>();
@@ -61,24 +67,34 @@ namespace Digital_Canvas
 
             //setting bitmap to CanvasPanel size
             bmpCanvas = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
-            //fill bitmap with background colour
-            var gfx = Graphics.FromImage(bmpCanvas);
-            using (SolidBrush brush = new SolidBrush(Color.FromArgb(255, 255,255)))
-            {
-                gfx.FillRectangle(brush, 0, 0, CanvasPanel.Width, CanvasPanel.Height);
-            }
+            
             //when the .Paint event happens -> do the _Paint method (happens on .Invalidate() and startup)
             CanvasPanel.Paint += CanvasPanel_Paint;
-            this.MouseWheel += new MouseEventHandler(splitContainer1_MouseWheel);
+            MouseWheel += splitContainer1_MouseWheel;
             //prevents flickering when drawing on screen
             typeof(Panel).InvokeMember("DoubleBuffered",
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, CanvasPanel,
                 new object[] { true });
+            
+            //start off with 1 layer
+            listLayers.Add(new Layer("layer"+(listLayers.Count+1), bmpCanvas));
+            //add layers to listbox
+            lstboxLayers.Items.AddRange(listLayers.ToArray());
+            currentLayer = lstboxLayers.Items[0].ToString();
+
         }
         
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
         {   //this draws the bmpcanvas at its location with the required scaling
-            e.Graphics.DrawImage(bmpCanvas, canvasPosition.X,canvasPosition.Y, bmpCanvas.Size.Width * zoomScale, bmpCanvas.Size.Height * zoomScale);
+            //draws each layer in order
+            foreach (Layer layer in listLayers)
+            {
+                //can be toggled by btnLayerVisible
+                if (layer.IsVisible)
+                {
+                    e.Graphics.DrawImage(layer.BmpLayer, canvasPosition.X,canvasPosition.Y, layer.BmpLayer.Size.Width * zoomScale, layer.BmpLayer.Size.Height * zoomScale);
+                }
+            }
         }
 
         private void ColourButton_Click(object sender, EventArgs e)
@@ -118,6 +134,8 @@ namespace Digital_Canvas
                 {
                     ToolErasing();
                 }
+                //store changes in current Layer, this line is added wherever there is a change to bmpCanvas
+                listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
             }
         }
         private void splitContainer1_MouseWheel(object sender, MouseEventArgs e)
@@ -125,13 +143,13 @@ namespace Digital_Canvas
            
             if (e.Delta > 0)
                
-                {
+            {
                
-                    zoomScale = zoomScale * 1.1f;            //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
+                zoomScale = zoomScale * 1.1f;            //magic numbers are bad, but this just changes the zoomScale, which affects how much the image is resized for the zoom
 
                     
-                    CanvasPanel.Invalidate();
-                }
+                CanvasPanel.Invalidate();
+            }
 
             if (e.Delta < 0)
             {
@@ -166,6 +184,8 @@ namespace Digital_Canvas
             {
                 ToolErasing();
             }
+            //store changes in current Layer, this line is added wherever there is a change to bmpCanvas
+            listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
         }
 
         //pen button icon click event for pen tool selected
@@ -222,7 +242,7 @@ namespace Digital_Canvas
         }
         private void ToolErasing()
         {
-            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, Color.White), (int)ToolSizeNumericUpDown.Value);
+            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, Color.Transparent), (int)ToolSizeNumericUpDown.Value);
             DrawLineCanvas(pen);
         }
 
@@ -354,6 +374,7 @@ namespace Digital_Canvas
                     }
                     //replace original bitmap with updated bitmap and new dimensions
                     bmpCanvas = new Bitmap(tempBitmap, tempBitmap.Size);
+                    listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
                     //update canvas display
                     CanvasPanel.Invalidate();
                 }
@@ -371,9 +392,10 @@ namespace Digital_Canvas
             private string _fileName;
             private Color _currentColor;
             private int _canvasWidth, _canvasHeight;
+            private List<Layer> _layers;
 
             //constructor
-            public CanvasData(Bitmap bmp, Tool tool, string file, Color inputColor, int width, int height)
+            public CanvasData(Bitmap bmp, Tool tool, string file, Color inputColor, int width, int height, List<Layer> layers)
             {
                 _bmpCanvas = bmp;
                 _currentTool = tool;
@@ -381,6 +403,7 @@ namespace Digital_Canvas
                 _currentColor = inputColor;
                 _canvasWidth = width;
                 _canvasHeight = height;
+                _layers = layers;
             }
 
             //getters
@@ -390,17 +413,8 @@ namespace Digital_Canvas
             public Color GetCurrentColor => _currentColor;
             public int GetCanvasWidth => _canvasWidth;
             public int GetCanvasHeight => _canvasHeight;
+            public List<Layer> GetLayerList => _layers;
 
-
-            //used for debugging, prints to Output window (bottom right)
-            public void Print()
-            {
-                Trace.WriteLine("File path/name: "+_fileName);
-                Trace.WriteLine("Current tool: "+_currentTool);
-                Trace.WriteLine("Bitmap width: "+_bmpCanvas.Width);
-                Trace.WriteLine("Colour: "+_currentColor);
-                Trace.WriteLine("Canvas size: "+_canvasWidth+"x"+_canvasHeight);
-            }
         }
 
         //Open data
@@ -429,6 +443,11 @@ namespace Digital_Canvas
                 ColourButton.BackColor = tempData.GetCurrentColor;
                 CanvasPanel.Width = tempData.GetCanvasWidth;
                 CanvasPanel.Height = tempData.GetCanvasHeight;
+                listLayers = tempData.GetLayerList;
+                lstboxLayers.Items.Clear();
+                lstboxLayers.Items.AddRange(listLayers.ToArray());
+                lstboxLayers.SetSelected(0, true);
+                currentLayer = lstboxLayers.SelectedItem.ToString();
                 //update panel with new bitmap
                 CanvasPanel.Invalidate();
             }
@@ -442,7 +461,7 @@ namespace Digital_Canvas
             {
                 //store wanted variables/data in this object
                 CanvasData tempData = new CanvasData(bmpCanvas, currentTool, saveFileName, ColourButton.BackColor,
-                    CanvasPanel.Width, CanvasPanel.Height);
+                    CanvasPanel.Width, CanvasPanel.Height, listLayers);
 
                 //create file at location given by user
                 Stream saveFileStream = File.Create(saveFileName);
@@ -474,7 +493,7 @@ namespace Digital_Canvas
             {
                 //store wanted variables/data in this object
                 CanvasData tempData = new CanvasData(bmpCanvas, currentTool, fileExplorerDialog.FileName,
-                    ColourButton.BackColor, CanvasPanel.Width, CanvasPanel.Height);
+                    ColourButton.BackColor, CanvasPanel.Width, CanvasPanel.Height, listLayers);
 
                 //create file at location given by user
                 Stream saveFileStream = File.Create(fileExplorerDialog.FileName);
@@ -521,8 +540,62 @@ namespace Digital_Canvas
             };
             //open popup and  check that user picked a location
             if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
+            {
+                //add all the different layers to this new bitmap
+                Bitmap tempBitmap = new Bitmap(CanvasPanel.Width, CanvasPanel.Height);
+                foreach (Layer layer in listLayers)
+                {
+                    Graphics tempGraphics = Graphics.FromImage(tempBitmap);
+                    tempGraphics.DrawImage(layer.BmpLayer, Point.Empty);
+                }
                 //save at location
-                bmpCanvas.Save(fileExplorerDialog.FileName);
+                tempBitmap.Save(fileExplorerDialog.FileName);
+            }
+        }
+
+        //import image and resize to fill canvas if larger than it
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //allows user to find an image
+            OpenFileDialog fileExplorerDialog = new OpenFileDialog
+            {
+                //automatically save as this file extension
+                Filter = "Image Files|*.bmp; *.jpg; *.jpeg; *.png; *.gif",
+                Title = "Import image"
+            };
+            //open popup and  check that user picked a location
+            if (fileExplorerDialog.ShowDialog() == DialogResult.OK)
+            {
+                //store chosen image
+                Bitmap importedImage = new Bitmap(fileExplorerDialog.OpenFile());
+
+                //if imported image width and height is larger than bmpCanvas
+                if ((importedImage.Width > bmpCanvas.Width) && (importedImage.Height > bmpCanvas.Height))
+                {
+                    bmpCanvas = new Bitmap(importedImage, bmpCanvas.Size);
+                }
+                //if width is larger than bmpcanvas width
+                else if ((importedImage.Width > bmpCanvas.Width) && (importedImage.Height < bmpCanvas.Height))
+                {
+                    bmpCanvas = new Bitmap(importedImage, new Size(bmpCanvas.Width, importedImage.Height));
+                }
+                //if height is larger than bmpcanvas height
+                else if ((importedImage.Width < bmpCanvas.Width) && (importedImage.Height > bmpCanvas.Height))
+                {
+                    bmpCanvas = new Bitmap(importedImage, new Size(importedImage.Width, bmpCanvas.Height));
+                }
+                //if imported image smaller than bmpcanvas
+                else
+                {
+                    bmpCanvas = new Bitmap(importedImage);
+                }
+
+                //make it match the entire canvas
+                bmpCanvas = new Bitmap(bmpCanvas, CanvasPanel.Size);
+                listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
+                //update canvas
+                CanvasPanel.Invalidate();
+            }
         }
 
         //check if user wants to save before closing program
@@ -553,6 +626,7 @@ namespace Digital_Canvas
             undoList.Push(new Bitmap(bmpCanvas));
             
             bmpCanvas.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
             transformations.Add("plus90");
             //update canvas
             CanvasPanel.Invalidate();
@@ -564,6 +638,7 @@ namespace Digital_Canvas
             undoList.Push(new Bitmap(bmpCanvas));
 
             bmpCanvas.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
             transformations.Add("plus180");
             CanvasPanel.Invalidate();
         }
@@ -574,6 +649,7 @@ namespace Digital_Canvas
             undoList.Push(new Bitmap(bmpCanvas));
 
             bmpCanvas.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
             transformations.Add("minus90");
             CanvasPanel.Invalidate();
         }
@@ -607,9 +683,8 @@ namespace Digital_Canvas
                 {
                     bmpCanvas.RotateFlip(RotateFlipType.RotateNoneFlipY);
                 }
-
-
             }
+            listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
             //clear the transformations history
             transformations.Clear();
             //redraw the panel
@@ -626,6 +701,7 @@ namespace Digital_Canvas
                 redoList.Push(new Bitmap(bmpCanvas));
                 //sets current bitmap to last change and removes it from undoList
                 bmpCanvas = new Bitmap(undoList.Pop());
+                listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
                 //update canvas
                 CanvasPanel.Invalidate();   
             }
@@ -638,6 +714,7 @@ namespace Digital_Canvas
             {
                 undoList.Push(new Bitmap(bmpCanvas));
                 bmpCanvas = new Bitmap(redoList.Pop());
+                listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
                 CanvasPanel.Invalidate();   
             }
         }
@@ -709,6 +786,7 @@ namespace Digital_Canvas
             undoList.Push(new Bitmap(bmpCanvas));
             bmpCanvas.RotateFlip(RotateFlipType.RotateNoneFlipX);
             transformations.Add("flipX");
+            listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
             CanvasPanel.Invalidate();
         }
 
@@ -718,7 +796,124 @@ namespace Digital_Canvas
             undoList.Push(new Bitmap(bmpCanvas));
             bmpCanvas.RotateFlip(RotateFlipType.RotateNoneFlipY);
             transformations.Add("flipY");
+            listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer = bmpCanvas;
             CanvasPanel.Invalidate();
+        }
+
+        private void btnLayerAdd_Click(object sender, EventArgs e)
+        {
+            //new layer with empty bitmap
+            listLayers.Add(new Layer("layer"+(listLayers.Count+1), new Bitmap(CanvasPanel.Width, CanvasPanel.Height)));
+            //update the listbox
+            lstboxLayers.Items.Clear();
+            lstboxLayers.Items.AddRange(listLayers.ToArray());
+            //this method of updating listbox resets selection, re-select previously selected layer
+            int match = lstboxLayers.FindStringExact(currentLayer);
+            if (match != ListBox.NoMatches)
+            {
+                lstboxLayers.SetSelected(match, true);
+            }
+        }
+
+        private void btnLayerRemove_Click(object sender, EventArgs e)
+        {
+            //prevent out of bounds error
+            if (listLayers.Count > 1)
+            {
+                //Find is used to get the layer by matching currentLayer to the LayerName property in Layer class
+                listLayers.Remove(listLayers.Find(layer => layer.LayerName == currentLayer));
+                lstboxLayers.Items.Clear();
+                lstboxLayers.Items.AddRange(listLayers.ToArray());
+                lstboxLayers.SetSelected(0, true);
+                //previous current layer deleted so choose a new one
+                currentLayer = lstboxLayers.SelectedItem.ToString();
+                
+                //update panel
+                CanvasPanel.Invalidate();
+            }
+        }
+
+        private void lstboxLayers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //change current layer to selected layer
+            currentLayer = lstboxLayers.SelectedItem.ToString();
+            //for editing on the new current layer
+            bmpCanvas = new Bitmap(listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer);
+            
+            //change text to indicate visibility state to user
+            if (listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible)
+            {
+                btnLayerVisible.Text = "Visible: True";
+            }
+            else
+            {
+                btnLayerVisible.Text = "Visible: False";
+            }
+            
+            CanvasPanel.Invalidate();
+        }
+
+        private void btnLayerVisible_Click(object sender, EventArgs e)
+        {
+            //toggles between true and false
+            listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible =
+                !listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible;
+            
+            //change text to indicate visibility state to user
+            if (listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible)
+            {
+                btnLayerVisible.Text = "Visible: True";
+            }
+            else
+            {
+                btnLayerVisible.Text = "Visible: False";
+            }
+            
+            //update panel to show layer change
+            CanvasPanel.Invalidate();
+        }
+
+        private void btnLayerMoveUp_Click(object sender, EventArgs e)
+        {
+            //prevent out of bounds error
+            if (listLayers.Count > 1 &&  listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer)) != 0)
+            {
+                //check below for Swap method
+                Swap(listLayers, listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer)), listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer))-1);
+                
+                lstboxLayers.Items.Clear();
+                lstboxLayers.Items.AddRange(listLayers.ToArray());
+                lstboxLayers.SetSelected(listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer)), true);
+                currentLayer = lstboxLayers.SelectedItem.ToString();
+
+                CanvasPanel.Invalidate();
+            }
+        }
+        
+        private void btnLayerMoveDown_Click(object sender, EventArgs e)
+        {
+            if (listLayers.Count > 1 &&  listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer)) != listLayers.Count-1)
+            {
+                Swap(listLayers, listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer)), listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer))+1);
+                
+                lstboxLayers.Items.Clear();
+                lstboxLayers.Items.AddRange(listLayers.ToArray());
+                lstboxLayers.SetSelected(listLayers.IndexOf(listLayers.Find(layer => layer.LayerName == currentLayer)), true);
+                currentLayer = lstboxLayers.SelectedItem.ToString();
+
+                CanvasPanel.Invalidate();
+            }
+        }
+        
+        //swap layers
+        private void Swap<Layer>(List<Layer> list, int indexA, int indexB)
+        {
+            //store A before it is replaced
+            Layer temp = list[indexA];
+            //replace A with B
+            list[indexA] = list[indexB];
+            //replace B with what A was (using temp)
+            list[indexB] = temp;
         }
     }
 
