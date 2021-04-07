@@ -99,7 +99,11 @@ namespace Digital_Canvas
             this.YPositionLabel = new System.Windows.Forms.Label();
             this.XPositionLabel = new System.Windows.Forms.Label();
             this.LeftToolbarPanel = new System.Windows.Forms.Panel();
-            this.FillTool = new System.Windows.Forms.Button();
+            this.SelectFlipVerticalButton = new System.Windows.Forms.Button();
+            this.SelectFlipHorizontalButton = new System.Windows.Forms.Button();
+            this.DeselectButton = new System.Windows.Forms.Button();
+            this.SelectionButton = new System.Windows.Forms.Button();
+            this.FillButton = new System.Windows.Forms.Button();
             this.TextButton = new System.Windows.Forms.Button();
             this.EyedropperButton = new System.Windows.Forms.Button();
             this.PaintbrushButton = new System.Windows.Forms.Button();
@@ -107,6 +111,8 @@ namespace Digital_Canvas
             this.PenButton = new System.Windows.Forms.Button();
             this.EraserButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.TransformRotateButton = new System.Windows.Forms.Button();
+            this.TransformResizeButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToolOpacitySlider)).BeginInit();
@@ -134,7 +140,7 @@ namespace Digital_Canvas
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(594, 586);
+            this.CanvasPanel.Size = new System.Drawing.Size(602, 586);
             this.CanvasPanel.TabIndex = 4;
             this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
@@ -285,18 +291,21 @@ namespace Digital_Canvas
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // transformToolStripMenuItem
             // 
@@ -587,7 +596,7 @@ namespace Digital_Canvas
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(865, 589);
-            this.splitContainer1.SplitterDistance = 592;
+            this.splitContainer1.SplitterDistance = 600;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
@@ -621,7 +630,7 @@ namespace Digital_Canvas
             this.layersPanel.Location = new System.Drawing.Point(-2, 2);
             this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 448);
+            this.layersPanel.Size = new System.Drawing.Size(284, 456);
             this.layersPanel.TabIndex = 10;
             // 
             // TopToolbarPanel
@@ -794,7 +803,13 @@ namespace Digital_Canvas
             // LeftToolbarPanel
             // 
             this.LeftToolbarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LeftToolbarPanel.Controls.Add(this.FillTool);
+            this.LeftToolbarPanel.Controls.Add(this.TransformResizeButton);
+            this.LeftToolbarPanel.Controls.Add(this.TransformRotateButton);
+            this.LeftToolbarPanel.Controls.Add(this.SelectFlipVerticalButton);
+            this.LeftToolbarPanel.Controls.Add(this.SelectFlipHorizontalButton);
+            this.LeftToolbarPanel.Controls.Add(this.DeselectButton);
+            this.LeftToolbarPanel.Controls.Add(this.SelectionButton);
+            this.LeftToolbarPanel.Controls.Add(this.FillButton);
             this.LeftToolbarPanel.Controls.Add(this.TextButton);
             this.LeftToolbarPanel.Controls.Add(this.EyedropperButton);
             this.LeftToolbarPanel.Controls.Add(this.PaintbrushButton);
@@ -807,21 +822,85 @@ namespace Digital_Canvas
             this.LeftToolbarPanel.Size = new System.Drawing.Size(37, 592);
             this.LeftToolbarPanel.TabIndex = 12;
             // 
-            // FillTool
+            // SelectFlipVerticalButton
             // 
-            this.FillTool.BackColor = System.Drawing.Color.Transparent;
-            this.FillTool.BackgroundImage = global::Digital_Canvas.Properties.Resources.fillIcon;
-            this.FillTool.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.FillTool.FlatAppearance.BorderSize = 0;
-            this.FillTool.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.FillTool.ForeColor = System.Drawing.SystemColors.Control;
-            this.FillTool.Location = new System.Drawing.Point(2, 232);
-            this.FillTool.Name = "FillTool";
-            this.FillTool.Size = new System.Drawing.Size(32, 32);
-            this.FillTool.TabIndex = 8;
-            this.toolTip1.SetToolTip(this.FillTool, "Fill");
-            this.FillTool.UseVisualStyleBackColor = false;
-            this.FillTool.Click += new System.EventHandler(this.FillTool_Click);
+            this.SelectFlipVerticalButton.BackColor = System.Drawing.Color.Transparent;
+            this.SelectFlipVerticalButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.selectFlipVerticallyIcon;
+            this.SelectFlipVerticalButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SelectFlipVerticalButton.FlatAppearance.BorderSize = 0;
+            this.SelectFlipVerticalButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SelectFlipVerticalButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.SelectFlipVerticalButton.Location = new System.Drawing.Point(1, 384);
+            this.SelectFlipVerticalButton.Name = "SelectFlipVerticalButton";
+            this.SelectFlipVerticalButton.Size = new System.Drawing.Size(32, 32);
+            this.SelectFlipVerticalButton.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.SelectFlipVerticalButton, "Transform Flip");
+            this.SelectFlipVerticalButton.UseVisualStyleBackColor = false;
+            this.SelectFlipVerticalButton.Click += new System.EventHandler(this.TransformFlipVerticalButton_Click);
+            // 
+            // SelectFlipHorizontalButton
+            // 
+            this.SelectFlipHorizontalButton.BackColor = System.Drawing.Color.Transparent;
+            this.SelectFlipHorizontalButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.selectFlipHorizontallyIcon;
+            this.SelectFlipHorizontalButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SelectFlipHorizontalButton.FlatAppearance.BorderSize = 0;
+            this.SelectFlipHorizontalButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SelectFlipHorizontalButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.SelectFlipHorizontalButton.Location = new System.Drawing.Point(2, 346);
+            this.SelectFlipHorizontalButton.Name = "SelectFlipHorizontalButton";
+            this.SelectFlipHorizontalButton.Size = new System.Drawing.Size(32, 32);
+            this.SelectFlipHorizontalButton.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.SelectFlipHorizontalButton, "Transform Flip");
+            this.SelectFlipHorizontalButton.UseVisualStyleBackColor = false;
+            this.SelectFlipHorizontalButton.Click += new System.EventHandler(this.TransformFlipHorizontalButton_Click);
+            // 
+            // DeselectButton
+            // 
+            this.DeselectButton.BackColor = System.Drawing.Color.Transparent;
+            this.DeselectButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.deselectionIcon;
+            this.DeselectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.DeselectButton.FlatAppearance.BorderSize = 0;
+            this.DeselectButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DeselectButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.DeselectButton.Location = new System.Drawing.Point(1, 308);
+            this.DeselectButton.Name = "DeselectButton";
+            this.DeselectButton.Size = new System.Drawing.Size(32, 32);
+            this.DeselectButton.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.DeselectButton, "Deselect");
+            this.DeselectButton.UseVisualStyleBackColor = false;
+            this.DeselectButton.Click += new System.EventHandler(this.DeselectButton_Click);
+            // 
+            // SelectionButton
+            // 
+            this.SelectionButton.BackColor = System.Drawing.Color.Transparent;
+            this.SelectionButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.selectionIcon;
+            this.SelectionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.SelectionButton.FlatAppearance.BorderSize = 0;
+            this.SelectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SelectionButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.SelectionButton.Location = new System.Drawing.Point(2, 270);
+            this.SelectionButton.Name = "SelectionButton";
+            this.SelectionButton.Size = new System.Drawing.Size(32, 32);
+            this.SelectionButton.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.SelectionButton, "Selection");
+            this.SelectionButton.UseVisualStyleBackColor = false;
+            this.SelectionButton.Click += new System.EventHandler(this.SelectionButton_Click);
+            // 
+            // FillButton
+            // 
+            this.FillButton.BackColor = System.Drawing.Color.Transparent;
+            this.FillButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.fillIcon;
+            this.FillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.FillButton.FlatAppearance.BorderSize = 0;
+            this.FillButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FillButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.FillButton.Location = new System.Drawing.Point(2, 232);
+            this.FillButton.Name = "FillButton";
+            this.FillButton.Size = new System.Drawing.Size(32, 32);
+            this.FillButton.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.FillButton, "Fill");
+            this.FillButton.UseVisualStyleBackColor = false;
+            this.FillButton.Click += new System.EventHandler(this.FillTool_Click);
             // 
             // TextButton
             // 
@@ -918,6 +997,36 @@ namespace Digital_Canvas
             this.toolTip1.SetToolTip(this.EraserButton, "Eraser");
             this.EraserButton.UseVisualStyleBackColor = false;
             this.EraserButton.Click += new System.EventHandler(this.EraserButton_Click);
+            // 
+            // TransformRotateButton
+            // 
+            this.TransformRotateButton.BackColor = System.Drawing.Color.Transparent;
+            this.TransformRotateButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.transformRotateIcon;
+            this.TransformRotateButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TransformRotateButton.FlatAppearance.BorderSize = 0;
+            this.TransformRotateButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.TransformRotateButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.TransformRotateButton.Location = new System.Drawing.Point(2, 460);
+            this.TransformRotateButton.Name = "TransformRotateButton";
+            this.TransformRotateButton.Size = new System.Drawing.Size(32, 32);
+            this.TransformRotateButton.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.TransformRotateButton, "Transform Rotate");
+            this.TransformRotateButton.UseVisualStyleBackColor = false;
+            // 
+            // TransformResizeButton
+            // 
+            this.TransformResizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.TransformResizeButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.transformIcon;
+            this.TransformResizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TransformResizeButton.FlatAppearance.BorderSize = 0;
+            this.TransformResizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.TransformResizeButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.TransformResizeButton.Location = new System.Drawing.Point(2, 422);
+            this.TransformResizeButton.Name = "TransformResizeButton";
+            this.TransformResizeButton.Size = new System.Drawing.Size(32, 32);
+            this.TransformResizeButton.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.TransformResizeButton, "Transform Resize");
+            this.TransformResizeButton.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -1023,7 +1132,7 @@ namespace Digital_Canvas
         private ToolStripMenuItem rightToolStripMenuItem;
         private Button EyedropperButton;
         private Button TextButton;
-        private Button FillTool;
+        private Button FillButton;
         private Label XPositionLabel;
         private Label YPositionLabel;
         private Button UndoButton;
@@ -1036,6 +1145,12 @@ namespace Digital_Canvas
         private Button RedoButton;
         private ToolStripMenuItem instructionManualToolStripMenuItem;
         private ToolTip toolTip1;
+        private Button SelectionButton;
+        private Button DeselectButton;
+        private Button SelectFlipVerticalButton;
+        private Button SelectFlipHorizontalButton;
+        private Button TransformRotateButton;
+        private Button TransformResizeButton;
     }
 }
 

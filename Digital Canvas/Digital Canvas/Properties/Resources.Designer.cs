@@ -103,6 +103,16 @@ namespace Digital_Canvas.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap deselectionIcon {
+            get {
+                object obj = ResourceManager.GetObject("deselectionIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eraserIcon {
             get {
                 object obj = ResourceManager.GetObject("eraserIcon", resourceCulture);
@@ -256,6 +266,26 @@ namespace Digital_Canvas.Properties {
         internal static System.Drawing.Bitmap rotateRightIcon {
             get {
                 object obj = ResourceManager.GetObject("rotateRightIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap selectFlipHorizontallyIcon {
+            get {
+                object obj = ResourceManager.GetObject("selectFlipHorizontallyIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap selectFlipVerticallyIcon {
+            get {
+                object obj = ResourceManager.GetObject("selectFlipVerticallyIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

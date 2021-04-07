@@ -16,7 +16,7 @@ namespace Digital_Canvas
         //enum constant set of tools to select between
         public enum Tool
         {
-            PEN, PENCIL, PAINTBRUSH, ERASER, EYEDROPPER, TEXT, FILL
+            PEN, PENCIL, PAINTBRUSH, ERASER, EYEDROPPER, TEXT, FILL, SELECT
         }
 
         //bitmap will be used as a canvas whereas canvaspanel is used to get userinput
@@ -56,6 +56,14 @@ namespace Digital_Canvas
         //the position of the bmp on the canvas as displayed to the user
         private PointF canvasPosition = PointF.Empty;
 
+        //area currently able to be drawn to
+        //used for selection tool
+        public Rectangle activeArea = new Rectangle();
+        public Point dragStart;
+        public Bitmap highlight;
+
+        public Bitmap copyBmp;
+
         public MainForm()
         {
             InitializeComponent();
@@ -78,6 +86,9 @@ namespace Digital_Canvas
                 BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, CanvasPanel,
                 new object[] { true });
             //int cursorsize = 0;
+
+            //set default active area
+            activeArea = new Rectangle(0, 0, CanvasPanel.Width, CanvasPanel.Height);
         }
 
         private void CanvasPanel_Paint(object sender, PaintEventArgs e)
@@ -135,6 +146,10 @@ namespace Digital_Canvas
                 else if (currentTool == Tool.FILL)
                 {
                     ToolFill(sender, e);
+                }
+                else if (currentTool == Tool.SELECT)
+                {
+                    ToolSelectArea(sender, e);
                 }
             }
 
@@ -231,6 +246,10 @@ namespace Digital_Canvas
             {
                 ToolFill(sender, e);
             }
+            else if (currentTool == Tool.SELECT)
+            {
+                dragStart = e.Location;
+            }
         }
 
         //tool button icons with click events for when a tool is selected
@@ -267,6 +286,11 @@ namespace Digital_Canvas
         private void FillTool_Click(object sender, EventArgs e)
         {
             currentTool = Tool.FILL;
+        }
+
+        private void SelectionButton_Click(object sender, EventArgs e)
+        {
+            currentTool = Tool.SELECT;
         }
 
         //equating tool size numeric up down value to tool size slider value to keep them constant with each other
@@ -340,10 +364,13 @@ namespace Digital_Canvas
             }
 
             //gfx.DrawImage(newPencilImage, cursorLocationA.X - radius, cursorLocationA.Y - radius, diameter, diameter);
-            gfx.DrawImage(pencilImage, (cursorLocationA.X - (radius * zoomScale) - canvasPosition.X) / zoomScale,
-                (cursorLocationA.Y - (radius * zoomScale) - canvasPosition.Y) / zoomScale,
-                diameter,
-                diameter);
+            if (mouseInActiveArea())
+            {
+                gfx.DrawImage(pencilImage, (cursorLocationA.X - (radius * zoomScale) - canvasPosition.X) / zoomScale,
+                    (cursorLocationA.Y - (radius * zoomScale) - canvasPosition.Y) / zoomScale,
+                    diameter,
+                    diameter);
+            }
 
             //update panel to show changes - results in .Paint event so _Paint method is called
             CanvasPanel.Invalidate();
@@ -385,10 +412,13 @@ namespace Digital_Canvas
                 paintbrushColourChanged = false;
             }
 
-            gfx.DrawImage(paintbrushImage, (cursorLocationA.X - (radius * zoomScale) - canvasPosition.X) / zoomScale,
-                (cursorLocationA.Y - (radius * zoomScale) - canvasPosition.Y) / zoomScale,
-                diameter,
-                diameter);
+            if (mouseInActiveArea())
+            {
+                gfx.DrawImage(paintbrushImage, (cursorLocationA.X - (radius * zoomScale) - canvasPosition.X) / zoomScale,
+                  (cursorLocationA.Y - (radius * zoomScale) - canvasPosition.Y) / zoomScale,
+                  diameter,
+                  diameter);
+            }
 
             //update panel to show changes - results in .Paint event so _Paint method is called
             CanvasPanel.Invalidate();
@@ -407,12 +437,14 @@ namespace Digital_Canvas
 
             //the zoomScale multiplier changes the cursor location to match the zoom level, otherwise the cursor would paint in the location at the default zoom
             //the canvasPosition addition changes the cursor to match the canvas when it gets moved up, down, left or right
-            gfx.DrawLine(pen,
-              (cursorLocationA.X - canvasPosition.X) / zoomScale,
-              (cursorLocationA.Y - canvasPosition.Y) / zoomScale,
-              (cursorLocationB.X - canvasPosition.X) / zoomScale,
-              (cursorLocationB.Y - canvasPosition.Y) / zoomScale);
-
+            if (mouseInActiveArea())
+            {
+                gfx.DrawLine(pen,
+                  (cursorLocationA.X - canvasPosition.X) / zoomScale,
+                  (cursorLocationA.Y - canvasPosition.Y) / zoomScale,
+                  (cursorLocationB.X - canvasPosition.X) / zoomScale,
+                  (cursorLocationB.Y - canvasPosition.Y) / zoomScale);
+            }
             //update panel to show changes - results in .Paint event so _Paint method is called
             CanvasPanel.Invalidate();
 
@@ -566,6 +598,39 @@ namespace Digital_Canvas
                 CanvasPanel.Refresh();
                 CanvasPanel.Invalidate();
                 return;
+            }
+        }
+
+        private void ToolSelectArea(object sender, MouseEventArgs e)
+        {
+            int xPosition = e.X;
+            int yPosition = e.Y;
+            int dragStartY = dragStart.X;
+            int dragStartX = dragStart.Y;
+
+            activeArea = new Rectangle(dragStartX, dragStartY, xPosition - dragStartX, yPosition - dragStartY);
+
+            if (activeArea.Height > 0 & activeArea.Width > 0 & xPosition < bmpCanvas.Width & xPosition >= 0 & yPosition < bmpCanvas.Height & yPosition >= 0)
+            {
+                highlight = new Bitmap(activeArea.Width, activeArea.Height);
+
+                //draw the box
+                for (int i = 0; i < activeArea.Width; i++)
+                {
+                    highlight.SetPixel(i, 0, Color.DarkGray);
+                    highlight.SetPixel(i, highlight.Height - 1, Color.DarkGray);
+                }
+
+                for (int j = 0; j < activeArea.Height; j++)
+                {
+                    highlight.SetPixel(0, j, Color.DarkGray);
+                    highlight.SetPixel(highlight.Width - 1, j, Color.DarkGray);
+                }
+
+                using (Graphics gfx = CanvasPanel.CreateGraphics())
+                {
+                    gfx.DrawImage(highlight, new Point(activeArea.X, activeArea.Y));
+                }
             }
         }
 
@@ -859,12 +924,12 @@ namespace Digital_Canvas
         {
             rotate90RightFunctionality();
         }
-        
+
         private void rotate180ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rotate180Functionality();
         }
-        
+
         private void rotate90ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             rotate90LeftFunctionality();
@@ -915,7 +980,7 @@ namespace Digital_Canvas
         {
             undoFunctionality();
         }
-        
+
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             redoFunctionality();
@@ -1054,6 +1119,87 @@ namespace Digital_Canvas
             }
 
         }
+
+        public bool mouseInActiveArea()
+        {
+            return (cursorLocationA.X > activeArea.X && cursorLocationA.X < (activeArea.X + activeArea.Width))
+                && (cursorLocationA.Y > activeArea.Y && cursorLocationA.Y < (activeArea.Y + activeArea.Height));
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyBmp = bmpCanvas.Clone(activeArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+
+            SolidBrush whiteBrush = new SolidBrush(Color.White);
+
+            using (Graphics gfx = Graphics.FromImage(bmpCanvas))
+            {
+                gfx.FillRectangle(whiteBrush, activeArea);
+            }
+
+            CanvasPanel.Invalidate();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyBmp = bmpCanvas.Clone(activeArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Point p = new Point(activeArea.X, activeArea.Y);
+
+            using (Graphics gfx = Graphics.FromImage(bmpCanvas))
+            {
+                gfx.DrawImage(copyBmp, p);
+                gfx.Dispose();
+            }
+
+            CanvasPanel.Invalidate();
+        }
+
+        private void DeselectButton_Click(object sender, EventArgs e)
+        {
+            activeArea = new Rectangle(0, 0, CanvasPanel.Width, CanvasPanel.Height);
+        }
+
+        private void TransformFlipHorizontalButton_Click(object sender, EventArgs e)
+        {
+            undoList.Push(new Bitmap(bmpCanvas));
+
+            Bitmap b = bmpCanvas.Clone(activeArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+
+            //flip the bmp
+            b.RotateFlip(RotateFlipType.RotateNoneFlipX);
+
+            using (Graphics gfx = Graphics.FromImage(bmpCanvas))
+            {
+                gfx.DrawImage(b, new Point(activeArea.X, activeArea.Y));
+                gfx.Dispose();
+            }
+
+            CanvasPanel.Invalidate();
+        }
+
+        private void TransformFlipVerticalButton_Click(object sender, EventArgs e)
+        {
+            undoList.Push(new Bitmap(bmpCanvas));
+
+            Bitmap b = bmpCanvas.Clone(activeArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+
+            //flip the bmp
+            b.RotateFlip(RotateFlipType.RotateNoneFlipY);
+
+            using (Graphics gfx = Graphics.FromImage(bmpCanvas))
+            {
+                gfx.DrawImage(b, new Point(activeArea.X, activeArea.Y));
+                gfx.Dispose();
+            }
+
+            CanvasPanel.Invalidate();
+        }
+
+
     }
 
 }

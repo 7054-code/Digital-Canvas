@@ -101,3 +101,17 @@ C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\obj\Debug\Digital Ca
 C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.pdb
 C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csprojAssemblyReference.cache
 C:\Users\Phoenix\source\repos\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.InstructionManualForm.resources
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital Canvas.csprojAssemblyReference.cache
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital Canvas.g.resources
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital_Canvas.MainForm.resources
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital_Canvas.CanvasSizeForm.resources
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital_Canvas.InstructionManualForm.resources
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital_Canvas.TextToolForm.resources
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital_Canvas.Properties.Resources.resources
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital Canvas.csproj.GenerateResource.cache
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital Canvas.csproj.CoreCompileInputs.cache
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital Canvas.exe
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Digital Canvas.pdb
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\bin\Debug\Digital Canvas.exe.config
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\bin\Debug\Digital Canvas.exe
+C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\bin\Debug\Digital Canvas.pdb

@@ -124,6 +124,9 @@
   <data name="hideLayerIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hideLayerIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="selectFlipHorizontallyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectFlipHorizontallyIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="flipHorizontallyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\flipHorizontallyIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +141,9 @@
   </data>
   <data name="rotateRightIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotateRightIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deselectionIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deselectionIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="transformRotateIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\transformRotateIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -156,6 +162,9 @@
   </data>
   <data name="eyedropperIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eyedropperIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pasteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pasteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="deleteLayerIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deleteLayerIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,7 +208,7 @@
   <data name="eraserIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eraserIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pasteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pasteIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="selectFlipVerticallyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectFlipVerticallyIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
