@@ -1,0 +1,260 @@
+Contents
+1) File 
+1.1	New
+1.2	Open
+1.3	Save
+1.4	Save As
+1.5	Export
+1.6	Import
+1.7	Close
+
+2) Edit 
+2.1	Undo
+2.2	Redo
+
+3)Selection and Transform
+3.1	Selection
+3.2	Cut
+3.3	Copy
+3.4	Paste
+3.5	Scale
+3.6	Flip
+3.7	Rotate
+
+4) Canvas Properties and View
+4.1	Change Canvas Size
+4.2	Zoom
+4.3	100% View
+4.4	Rotation
+4.5	Flip
+4.6	Move
+
+5) Tool Selection
+5.1	Pen
+5.2	Pencil
+5.3	Paintbrush
+5.3	Eraser
+5.5	Eyedropper
+5.6	Text
+5.7	Fill/ Paint Bucket
+
+6) Pen Properties
+6.1	Size Changer
+6.2	Opacity Changer
+6.3	Cursor Shape
+
+7) Colour
+7.1	RGB
+7.2	Hex
+7.3	Colour Square
+7.4	Colour Wheel
+
+8) Layers
+8.1	Add Layers
+8.2	View/ Hide Layers
+8.3	Move Layers
+8.4	Layer Opacity
+8.5	Delete Layers
+
+9) Other Features
+9.1	Tooltip
+9.2	X, Y Canvas Position
+9.3	Instruction Manual
+
+
+1) File
+	File top left drop-down menu.
+ 
+1.1 New
+	New bitmap canvas created.
+
+1.2 Open
+	Open an previous save.
+
+1.3 Save
+	Save file.
+
+1.4 Save As
+	Save file as a specific file type.
+
+1.5 Export
+	Export file as a specific file type.
+	.bmp - uncompressed bitmap image.
+	.jpg - lossy compressed jpg image.
+	.png - lossless compressed png image with transparent background.
+	.psd - lossless Photoshop Document file.
+
+1.6 Import
+	Imports image.
+
+1.7 Close
+	Closes program.
+
+2) Edit 
+	Edit top left drop-down menu.
+
+2.1 Undo
+	Undo and reverses to the previous to the most recent command and can do multiple undo's.
+
+2.2 Redo
+	Redo an undo command and can do multiple redo's.
+
+3)Selection and Transform
+	Selection Tool on left side bar.
+
+3.1 Selection
+	Drag and select an area which can only be drawn on, cut, copy, and transformed.
+
+3.2 Cut
+	Copies and removes the area selected.
+
+3.3 Copy
+	Copies the area selected without removing.
+
+3.4 Paste
+	Insert what was cut or copied from elsewhere.
+
+3.5 Scale
+	Change the size of the selection. 
+	Increase by dragging outwards.
+	Decrease by dragging inwards.
+
+3.6 Flip
+	Horizontal - Flips selected area horizontally.
+	Vertical - Flips selected area vertically.
+
+3.7 Rotate
+	Rotate selected area by dragging corners around.
+	
+
+4) Canvas Properties and View
+	View top left drop-down menu.
+
+4.1 Change Canvas Size
+	Opens a new window to change the height and width of the canvas in pixels.
+
+4.2 Zoom
+	Zoom In - Increase the overall viewing area.
+	Zoom Out - Decrease the overall viewing area.
+
+4.3 100% View
+	Changes back to original view.
+
+4.4 Rotation
+	Reset Rotation - Resets the canvas to the original rotation 0°.
+	Rotate +90° - Rotate the canvas right or clock-wise by 90°.
+	Rotate +180° - Rotate the canvas right or close-wise by 180°.
+	Rotate -90° - Rotate the canvas left, anti-clockwise or counter-clockwise by 90°. 
+
+4.5 Flip
+	Horizontal - Flip canvas horizontally.
+	Vertical - Flip canvas vertically.
+
+4.6 Move
+	Up - Moves canvas view up or north.
+	Down - Moves canvas view down or south.
+	Left - Moves canvas view left or west.
+	Right - Moves canvas view right or east.
+	
+5) Tool Selection
+	Selecting tools from left toolbar.
+ 
+5.1 Pen
+	Pen selected for a pen style brush.
+	Mouse left click and drag across canvas area to draw.
+	Tablet press down and drag pen on tablet across canvas area to draw.
+
+5.2 Pencil
+	Pencil selected for a pencil style brush.
+	Mouse left click and drag across canvas area to draw.
+	Tablet press down and drag pen on tablet across canvas area to draw.
+
+5.3 Paintbrush
+	Paintbrush selected for a paint style brush.
+	Mouse left click and drag across canvas area to draw.
+	Tablet press down and drag pen on tablet across canvas area to draw.
+
+5.3 Eraser
+	Eraser selected to remove what is drawn on the canvas area.
+	Mouse left click and drag across canvas area to draw.
+	Tablet press down and drag pen on tablet across canvas area to draw.
+
+5.5 Eyedropper
+	Eyedropper selected for a colour picker from canvas.
+	Left click on the colour on the canvas to change the colour to the chosen colour.
+
+5.6 Text
+	Text selected to insert text onto the canvas and click confirm to add to the canvas.
+	Left click the point on the canvas to insert into that area.
+	Font Family - Drop-down menu to select the font family.
+	Font Size - Drop-down menu to select the size of the font.
+	Font Style - Changes font style: bold, italics, underline and strikethrough.
+	Font Colour - Changes colour of the text.
+	Preview Text - Type into the area and get a preview.
+
+5.7 Fill
+	Fill selected to fill an enclosed area with a colour, the whole canvas if the area is not enclosed or replaces a colour on the canvas.
+	Left click the point on the canvas inside the enclosed area.
+
+6) Pen Properties
+	Change the properties of the pen on the right panel.
+	
+6.1 Size Changer
+	Changes the diameter of the brushes.
+
+6.2 Opacity Changer
+	Changes the opacity of the tools.
+	Value 100 is opaque.
+	Value 0 is transparent.
+
+6.3 Cursor Shape
+	Circle to show the diameter for brushes.
+	Cross to show points of other tools.
+
+7) Colour
+		
+
+7.1 RGB
+	RGB value of the selected colour.
+
+7.2 Hex
+	Hexadecimal of the selected colour. 
+
+7.3 Colour Square
+	Changes the lightness and saturation of the selected colour.
+
+7.4 Colour Wheel
+	Changes the hue of the selected colour
+
+
+8) Layers
+	Transparent sheets of layers on a canvas.
+
+8.1 Add Layers
+	Add another layer.
+
+8.2 View/ Hide Layers
+	View - The layer is shown on the canvas.
+	Hide - The layer is hidden on the canvas.
+
+8.3 Move Layers
+	Move layers up or down to change where a layer is in front or behind each other.
+
+8.4 Layer Opacity
+	Changes the opacity of the specific layer.
+
+8.5 Delete Layers
+	Removes the layer.
+
+
+9) Other Features
+
+9.1 Tooltip
+	Hover over the tool to show the tooltip.
+
+9.2 X, Y Canvas Position
+	Top right values to show the cursor x and y position on the canvas.
+
+9.3 Instruction Manual
+	Help drop-down menu.
+	Instruction manual on how to use the software.

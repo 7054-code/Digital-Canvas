@@ -47,26 +47,44 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="CanvasMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CanvasMainForm.Designer.cs">
+      <DependentUpon>CanvasMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="CanvasSizeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="CanvasSizeForm.Designer.cs">
+      <DependentUpon>CanvasSizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstructionManualForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstructionManualForm.Designer.cs">
+      <DependentUpon>InstructionManualForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Layer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TextToolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextToolForm.Designer.cs">
+      <DependentUpon>TextToolForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CanvasMainForm.resx">
+      <DependentUpon>CanvasMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="CanvasSizeForm.resx">
+      <DependentUpon>CanvasSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstructionManualForm.resx">
+      <DependentUpon>InstructionManualForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextToolForm.resx">
+      <DependentUpon>TextToolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,10 +110,36 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\penIcon.png" />
+    <Resource Include="Resources\eraserIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\eraserIcon.png" />
+    <Resource Include="Resources\eyedropperIcon.png" />
+    <Resource Include="Resources\fillIcon.png" />
+    <Resource Include="Resources\paintbrushIcon.png" />
+    <Resource Include="Resources\pencilIcon.png" />
+    <Resource Include="Resources\textIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewLayerIcon.png" />
+    <None Include="Resources\flipVerticallyIcon.png" />
+    <None Include="Resources\flipHorizontallyIcon.png" />
+    <None Include="Resources\addLayerIcon.png" />
+    <None Include="Resources\deleteLayerIcon.png" />
+    <None Include="Resources\minimizeIcon.png" />
+    <None Include="Resources\closeIcon.png" />
+    <None Include="Resources\hideLayerIcon.png" />
+    <None Include="Resources\copyIcon.png" />
+    <None Include="Resources\pasteIcon.png" />
+    <Content Include="Resources\redoIcon.png" />
+    <None Include="Resources\zoomInIcon.png" />
+    <None Include="Resources\zoomOutIcon.png" />
+    <None Include="Resources\rotateRightIcon.png" />
+    <None Include="Resources\rotateLeftIcon.png" />
+    <None Include="Resources\selectionIcon.png" />
+    <None Include="Resources\transformIcon.png" />
+    <None Include="Resources\transformRotateIcon.png" />
+    <None Include="Resources\restoreDownIcon.png" />
+    <Content Include="Resources\undoIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
