@@ -99,6 +99,8 @@ namespace Digital_Canvas
             this.YPositionLabel = new System.Windows.Forms.Label();
             this.XPositionLabel = new System.Windows.Forms.Label();
             this.LeftToolbarPanel = new System.Windows.Forms.Panel();
+            this.TransformResizeButton = new System.Windows.Forms.Button();
+            this.TransformRotateButton = new System.Windows.Forms.Button();
             this.SelectFlipVerticalButton = new System.Windows.Forms.Button();
             this.SelectFlipHorizontalButton = new System.Windows.Forms.Button();
             this.DeselectButton = new System.Windows.Forms.Button();
@@ -111,8 +113,6 @@ namespace Digital_Canvas
             this.PenButton = new System.Windows.Forms.Button();
             this.EraserButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.TransformRotateButton = new System.Windows.Forms.Button();
-            this.TransformResizeButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToolOpacitySlider)).BeginInit();
@@ -139,8 +139,9 @@ namespace Digital_Canvas
             this.CanvasPanel.BackColor = System.Drawing.Color.Transparent;
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
+            this.CanvasPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(602, 586);
+            this.CanvasPanel.Size = new System.Drawing.Size(1035, 902);
             this.CanvasPanel.TabIndex = 4;
             this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
@@ -152,6 +153,7 @@ namespace Digital_Canvas
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.menuStrip1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -160,8 +162,7 @@ namespace Digital_Canvas
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(904, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1356, 31);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -176,33 +177,33 @@ namespace Digital_Canvas
             this.importToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 22);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 27);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.newToolStripMenuItem.Text = "New...";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -214,47 +215,47 @@ namespace Digital_Canvas
             this.pngPNGToolStripMenuItem,
             this.psdPhotoshopDocumentToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // bmpBMPToolStripMenuItem
             // 
             this.bmpBMPToolStripMenuItem.Name = "bmpBMPToolStripMenuItem";
-            this.bmpBMPToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.bmpBMPToolStripMenuItem.Size = new System.Drawing.Size(355, 34);
             this.bmpBMPToolStripMenuItem.Text = ".bmp (BMP)";
             this.bmpBMPToolStripMenuItem.Click += new System.EventHandler(this.bmpBMPToolStripMenuItem_Click);
             // 
             // jpgJPGToolStripMenuItem
             // 
             this.jpgJPGToolStripMenuItem.Name = "jpgJPGToolStripMenuItem";
-            this.jpgJPGToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.jpgJPGToolStripMenuItem.Size = new System.Drawing.Size(355, 34);
             this.jpgJPGToolStripMenuItem.Text = ".jpg (JPG)";
             this.jpgJPGToolStripMenuItem.Click += new System.EventHandler(this.jpgJPGToolStripMenuItem_Click);
             // 
             // pngPNGToolStripMenuItem
             // 
             this.pngPNGToolStripMenuItem.Name = "pngPNGToolStripMenuItem";
-            this.pngPNGToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.pngPNGToolStripMenuItem.Size = new System.Drawing.Size(355, 34);
             this.pngPNGToolStripMenuItem.Text = ".png (PNG)";
             this.pngPNGToolStripMenuItem.Click += new System.EventHandler(this.pngPNGToolStripMenuItem_Click);
             // 
             // psdPhotoshopDocumentToolStripMenuItem
             // 
             this.psdPhotoshopDocumentToolStripMenuItem.Name = "psdPhotoshopDocumentToolStripMenuItem";
-            this.psdPhotoshopDocumentToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.psdPhotoshopDocumentToolStripMenuItem.Size = new System.Drawing.Size(355, 34);
             this.psdPhotoshopDocumentToolStripMenuItem.Text = ".psd (Photoshop Document)";
             this.psdPhotoshopDocumentToolStripMenuItem.Click += new System.EventHandler(this.psdPhotoshopDocumentToolStripMenuItem_Click);
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.importToolStripMenuItem.Text = "Import";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -269,54 +270,54 @@ namespace Digital_Canvas
             this.transformToolStripMenuItem,
             this.changeCanvasSizeToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(43, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(60, 27);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(291, 34);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(291, 34);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(291, 34);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(291, 34);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(291, 34);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // transformToolStripMenuItem
             // 
             this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
-            this.transformToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.transformToolStripMenuItem.Size = new System.Drawing.Size(291, 34);
             this.transformToolStripMenuItem.Text = "Transform";
             // 
             // changeCanvasSizeToolStripMenuItem
             // 
             this.changeCanvasSizeToolStripMenuItem.Name = "changeCanvasSizeToolStripMenuItem";
-            this.changeCanvasSizeToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.changeCanvasSizeToolStripMenuItem.Size = new System.Drawing.Size(291, 34);
             this.changeCanvasSizeToolStripMenuItem.Text = "Change Canvas Size";
             this.changeCanvasSizeToolStripMenuItem.Click += new System.EventHandler(this.changeCanvasSizeToolStripMenuItem_Click);
             // 
@@ -331,14 +332,14 @@ namespace Digital_Canvas
             this.flipVerticallyToolStripMenuItem,
             this.moveToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(69, 27);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // zoomInToolStripMenuItem
             // 
             this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
             this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(264, 34);
             this.zoomInToolStripMenuItem.Text = "Zoom In";
             this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
             // 
@@ -346,14 +347,14 @@ namespace Digital_Canvas
             // 
             this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
             this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(264, 34);
             this.zoomOutToolStripMenuItem.Text = "Zoom Out";
             this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
             // 
             // percentViewToolStripMenuItem
             // 
             this.percentViewToolStripMenuItem.Name = "percentViewToolStripMenuItem";
-            this.percentViewToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.percentViewToolStripMenuItem.Size = new System.Drawing.Size(264, 34);
             this.percentViewToolStripMenuItem.Text = "100% View";
             this.percentViewToolStripMenuItem.Click += new System.EventHandler(this.percentViewToolStripMenuItem_Click);
             // 
@@ -365,48 +366,48 @@ namespace Digital_Canvas
             this.rotate180ToolStripMenuItem,
             this.rotate90ToolStripMenuItem1});
             this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(264, 34);
             this.rotateToolStripMenuItem.Text = "Rotate";
             // 
             // resetRotationToolStripMenuItem
             // 
             this.resetRotationToolStripMenuItem.Name = "resetRotationToolStripMenuItem";
-            this.resetRotationToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.resetRotationToolStripMenuItem.Size = new System.Drawing.Size(241, 34);
             this.resetRotationToolStripMenuItem.Text = "Reset Rotation";
             this.resetRotationToolStripMenuItem.Click += new System.EventHandler(this.resetRotationToolStripMenuItem_Click);
             // 
             // rotate90ToolStripMenuItem
             // 
             this.rotate90ToolStripMenuItem.Name = "rotate90ToolStripMenuItem";
-            this.rotate90ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.rotate90ToolStripMenuItem.Size = new System.Drawing.Size(241, 34);
             this.rotate90ToolStripMenuItem.Text = "Rotate +90°";
             this.rotate90ToolStripMenuItem.Click += new System.EventHandler(this.rotate90ToolStripMenuItem_Click);
             // 
             // rotate180ToolStripMenuItem
             // 
             this.rotate180ToolStripMenuItem.Name = "rotate180ToolStripMenuItem";
-            this.rotate180ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.rotate180ToolStripMenuItem.Size = new System.Drawing.Size(241, 34);
             this.rotate180ToolStripMenuItem.Text = "Rotate +180°";
             this.rotate180ToolStripMenuItem.Click += new System.EventHandler(this.rotate180ToolStripMenuItem_Click);
             // 
             // rotate90ToolStripMenuItem1
             // 
             this.rotate90ToolStripMenuItem1.Name = "rotate90ToolStripMenuItem1";
-            this.rotate90ToolStripMenuItem1.Size = new System.Drawing.Size(162, 22);
+            this.rotate90ToolStripMenuItem1.Size = new System.Drawing.Size(241, 34);
             this.rotate90ToolStripMenuItem1.Text = "Rotate -90°";
             this.rotate90ToolStripMenuItem1.Click += new System.EventHandler(this.rotate90ToolStripMenuItem1_Click);
             // 
             // flipHorizontallyToolStripMenuItem
             // 
             this.flipHorizontallyToolStripMenuItem.Name = "flipHorizontallyToolStripMenuItem";
-            this.flipHorizontallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.flipHorizontallyToolStripMenuItem.Size = new System.Drawing.Size(264, 34);
             this.flipHorizontallyToolStripMenuItem.Text = "Flip Horizontally";
             this.flipHorizontallyToolStripMenuItem.Click += new System.EventHandler(this.flipHorizontallyToolStripMenuItem_Click);
             // 
             // flipVerticallyToolStripMenuItem
             // 
             this.flipVerticallyToolStripMenuItem.Name = "flipVerticallyToolStripMenuItem";
-            this.flipVerticallyToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.flipVerticallyToolStripMenuItem.Size = new System.Drawing.Size(264, 34);
             this.flipVerticallyToolStripMenuItem.Text = "Flip Vertically";
             this.flipVerticallyToolStripMenuItem.Click += new System.EventHandler(this.flipVerticallyToolStripMenuItem_Click);
             // 
@@ -418,7 +419,7 @@ namespace Digital_Canvas
             this.leftToolStripMenuItem,
             this.rightToolStripMenuItem});
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(264, 34);
             this.moveToolStripMenuItem.Text = "Move";
             // 
             // upToolStripMenuItem
@@ -426,7 +427,7 @@ namespace Digital_Canvas
             this.upToolStripMenuItem.Name = "upToolStripMenuItem";
             this.upToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.upToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
             this.upToolStripMenuItem.Text = "Up";
             this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
             // 
@@ -434,7 +435,7 @@ namespace Digital_Canvas
             // 
             this.downToolStripMenuItem.Name = "downToolStripMenuItem";
             this.downToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
-            this.downToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.downToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
             this.downToolStripMenuItem.Text = "Down";
             this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
             // 
@@ -442,7 +443,7 @@ namespace Digital_Canvas
             // 
             this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
             this.leftToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
-            this.leftToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.leftToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
             this.leftToolStripMenuItem.Text = "Left";
             this.leftToolStripMenuItem.Click += new System.EventHandler(this.leftToolStripMenuItem_Click);
             // 
@@ -450,7 +451,7 @@ namespace Digital_Canvas
             // 
             this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
             this.rightToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
-            this.rightToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.rightToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
             this.rightToolStripMenuItem.Text = "Right";
             this.rightToolStripMenuItem.Click += new System.EventHandler(this.rightToolStripMenuItem_Click);
             // 
@@ -459,13 +460,13 @@ namespace Digital_Canvas
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.instructionManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 27);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // instructionManualToolStripMenuItem
             // 
             this.instructionManualToolStripMenuItem.Name = "instructionManualToolStripMenuItem";
-            this.instructionManualToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.instructionManualToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.instructionManualToolStripMenuItem.Text = "Instruction Manual";
             this.instructionManualToolStripMenuItem.Click += new System.EventHandler(this.instructionManualToolStripMenuItem_Click);
             // 
@@ -485,17 +486,19 @@ namespace Digital_Canvas
             this.panel1.Controls.Add(this.SizeLabel);
             this.panel1.Controls.Add(this.ColourButton);
             this.panel1.Controls.Add(this.ColourLabel);
-            this.panel1.Location = new System.Drawing.Point(-2, 3);
+            this.panel1.Location = new System.Drawing.Point(-3, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(287, 161);
+            this.panel1.Size = new System.Drawing.Size(299, 247);
             this.panel1.TabIndex = 9;
             // 
             // ToolOpacitySlider
             // 
-            this.ToolOpacitySlider.Location = new System.Drawing.Point(50, 75);
+            this.ToolOpacitySlider.Location = new System.Drawing.Point(75, 115);
+            this.ToolOpacitySlider.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ToolOpacitySlider.Maximum = 100;
             this.ToolOpacitySlider.Name = "ToolOpacitySlider";
-            this.ToolOpacitySlider.Size = new System.Drawing.Size(104, 45);
+            this.ToolOpacitySlider.Size = new System.Drawing.Size(156, 69);
             this.ToolOpacitySlider.TabIndex = 6;
             this.ToolOpacitySlider.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ToolOpacitySlider.Value = 100;
@@ -503,10 +506,11 @@ namespace Digital_Canvas
             // 
             // ToolSizeSlider
             // 
-            this.ToolSizeSlider.Location = new System.Drawing.Point(49, 47);
+            this.ToolSizeSlider.Location = new System.Drawing.Point(74, 72);
+            this.ToolSizeSlider.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ToolSizeSlider.Maximum = 100;
             this.ToolSizeSlider.Name = "ToolSizeSlider";
-            this.ToolSizeSlider.Size = new System.Drawing.Size(104, 45);
+            this.ToolSizeSlider.Size = new System.Drawing.Size(156, 69);
             this.ToolSizeSlider.TabIndex = 5;
             this.ToolSizeSlider.TickStyle = System.Windows.Forms.TickStyle.None;
             this.ToolSizeSlider.Value = 10;
@@ -515,9 +519,10 @@ namespace Digital_Canvas
             // ToolOpacityNumericUpDown
             // 
             this.ToolOpacityNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ToolOpacityNumericUpDown.Location = new System.Drawing.Point(182, 77);
+            this.ToolOpacityNumericUpDown.Location = new System.Drawing.Point(273, 118);
+            this.ToolOpacityNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ToolOpacityNumericUpDown.Name = "ToolOpacityNumericUpDown";
-            this.ToolOpacityNumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.ToolOpacityNumericUpDown.Size = new System.Drawing.Size(75, 26);
             this.ToolOpacityNumericUpDown.TabIndex = 4;
             this.ToolOpacityNumericUpDown.Value = new decimal(new int[] {
             100,
@@ -529,19 +534,21 @@ namespace Digital_Canvas
             // OpacityLabel
             // 
             this.OpacityLabel.AutoSize = true;
-            this.OpacityLabel.Location = new System.Drawing.Point(8, 79);
+            this.OpacityLabel.Location = new System.Drawing.Point(12, 122);
+            this.OpacityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OpacityLabel.Name = "OpacityLabel";
-            this.OpacityLabel.Size = new System.Drawing.Size(43, 13);
+            this.OpacityLabel.Size = new System.Drawing.Size(62, 20);
             this.OpacityLabel.TabIndex = 3;
             this.OpacityLabel.Text = "Opacity";
             // 
             // ToolSizeNumericUpDown
             // 
             this.ToolSizeNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ToolSizeNumericUpDown.Location = new System.Drawing.Point(181, 42);
+            this.ToolSizeNumericUpDown.Location = new System.Drawing.Point(272, 65);
+            this.ToolSizeNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ToolSizeNumericUpDown.Name = "ToolSizeNumericUpDown";
             this.ToolSizeNumericUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ToolSizeNumericUpDown.Size = new System.Drawing.Size(50, 20);
+            this.ToolSizeNumericUpDown.Size = new System.Drawing.Size(75, 26);
             this.ToolSizeNumericUpDown.TabIndex = 2;
             this.ToolSizeNumericUpDown.Value = new decimal(new int[] {
             10,
@@ -552,17 +559,19 @@ namespace Digital_Canvas
             // 
             // SizeLabel
             // 
-            this.SizeLabel.Location = new System.Drawing.Point(7, 47);
+            this.SizeLabel.Location = new System.Drawing.Point(10, 72);
+            this.SizeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SizeLabel.Name = "SizeLabel";
-            this.SizeLabel.Size = new System.Drawing.Size(35, 13);
+            this.SizeLabel.Size = new System.Drawing.Size(52, 20);
             this.SizeLabel.TabIndex = 0;
             this.SizeLabel.Text = "Size";
             // 
             // ColourButton
             // 
-            this.ColourButton.Location = new System.Drawing.Point(50, 13);
+            this.ColourButton.Location = new System.Drawing.Point(75, 20);
+            this.ColourButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ColourButton.Name = "ColourButton";
-            this.ColourButton.Size = new System.Drawing.Size(75, 23);
+            this.ColourButton.Size = new System.Drawing.Size(112, 35);
             this.ColourButton.TabIndex = 1;
             this.ColourButton.UseVisualStyleBackColor = true;
             this.ColourButton.Click += new System.EventHandler(this.ColourButton_Click);
@@ -571,9 +580,10 @@ namespace Digital_Canvas
             // 
             this.ColourLabel.AutoSize = true;
             this.ColourLabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.ColourLabel.Location = new System.Drawing.Point(7, 18);
+            this.ColourLabel.Location = new System.Drawing.Point(10, 28);
+            this.ColourLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ColourLabel.Name = "ColourLabel";
-            this.ColourLabel.Size = new System.Drawing.Size(37, 13);
+            this.ColourLabel.Size = new System.Drawing.Size(55, 20);
             this.ColourLabel.TabIndex = 0;
             this.ColourLabel.Text = "Colour";
             // 
@@ -583,8 +593,7 @@ namespace Digital_Canvas
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer1.Location = new System.Drawing.Point(39, 51);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1.Location = new System.Drawing.Point(58, 78);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -595,17 +604,15 @@ namespace Digital_Canvas
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(865, 589);
-            this.splitContainer1.SplitterDistance = 600;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(1298, 906);
+            this.splitContainer1.SplitterDistance = 1033;
             this.splitContainer1.TabIndex = 10;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer2.Location = new System.Drawing.Point(4, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer2.Location = new System.Drawing.Point(6, 0);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -616,9 +623,9 @@ namespace Digital_Canvas
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.layersPanel);
-            this.splitContainer2.Size = new System.Drawing.Size(282, 590);
-            this.splitContainer2.SplitterDistance = 164;
-            this.splitContainer2.SplitterWidth = 3;
+            this.splitContainer2.Size = new System.Drawing.Size(292, 908);
+            this.splitContainer2.SplitterDistance = 252;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 11;
             // 
             // layersPanel
@@ -627,10 +634,9 @@ namespace Digital_Canvas
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.layersPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.layersPanel.Location = new System.Drawing.Point(-2, 2);
-            this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.layersPanel.Location = new System.Drawing.Point(-3, 3);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 456);
+            this.layersPanel.Size = new System.Drawing.Size(295, 701);
             this.layersPanel.TabIndex = 10;
             // 
             // TopToolbarPanel
@@ -648,10 +654,9 @@ namespace Digital_Canvas
             this.TopToolbarPanel.Controls.Add(this.UndoButton);
             this.TopToolbarPanel.Controls.Add(this.YPositionLabel);
             this.TopToolbarPanel.Controls.Add(this.XPositionLabel);
-            this.TopToolbarPanel.Location = new System.Drawing.Point(0, 22);
-            this.TopToolbarPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.TopToolbarPanel.Location = new System.Drawing.Point(0, 34);
             this.TopToolbarPanel.Name = "TopToolbarPanel";
-            this.TopToolbarPanel.Size = new System.Drawing.Size(904, 28);
+            this.TopToolbarPanel.Size = new System.Drawing.Size(1356, 43);
             this.TopToolbarPanel.TabIndex = 11;
             // 
             // FlipVerticallyButton
@@ -662,9 +667,10 @@ namespace Digital_Canvas
             this.FlipVerticallyButton.FlatAppearance.BorderSize = 0;
             this.FlipVerticallyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.FlipVerticallyButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.FlipVerticallyButton.Location = new System.Drawing.Point(278, 0);
+            this.FlipVerticallyButton.Location = new System.Drawing.Point(417, 0);
+            this.FlipVerticallyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FlipVerticallyButton.Name = "FlipVerticallyButton";
-            this.FlipVerticallyButton.Size = new System.Drawing.Size(28, 28);
+            this.FlipVerticallyButton.Size = new System.Drawing.Size(42, 43);
             this.FlipVerticallyButton.TabIndex = 16;
             this.toolTip1.SetToolTip(this.FlipVerticallyButton, "Flip Vertically");
             this.FlipVerticallyButton.UseVisualStyleBackColor = false;
@@ -678,9 +684,10 @@ namespace Digital_Canvas
             this.FlipHorizontallyButton.FlatAppearance.BorderSize = 0;
             this.FlipHorizontallyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.FlipHorizontallyButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.FlipHorizontallyButton.Location = new System.Drawing.Point(244, 0);
+            this.FlipHorizontallyButton.Location = new System.Drawing.Point(366, 0);
+            this.FlipHorizontallyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FlipHorizontallyButton.Name = "FlipHorizontallyButton";
-            this.FlipHorizontallyButton.Size = new System.Drawing.Size(28, 28);
+            this.FlipHorizontallyButton.Size = new System.Drawing.Size(42, 43);
             this.FlipHorizontallyButton.TabIndex = 15;
             this.toolTip1.SetToolTip(this.FlipHorizontallyButton, "Flip Horizontally");
             this.FlipHorizontallyButton.UseVisualStyleBackColor = false;
@@ -694,9 +701,10 @@ namespace Digital_Canvas
             this.ZoomInButton.FlatAppearance.BorderSize = 0;
             this.ZoomInButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ZoomInButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.ZoomInButton.Location = new System.Drawing.Point(210, 0);
+            this.ZoomInButton.Location = new System.Drawing.Point(315, 0);
+            this.ZoomInButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ZoomInButton.Name = "ZoomInButton";
-            this.ZoomInButton.Size = new System.Drawing.Size(28, 28);
+            this.ZoomInButton.Size = new System.Drawing.Size(42, 43);
             this.ZoomInButton.TabIndex = 14;
             this.toolTip1.SetToolTip(this.ZoomInButton, "Zoom In");
             this.ZoomInButton.UseVisualStyleBackColor = false;
@@ -710,9 +718,10 @@ namespace Digital_Canvas
             this.ZoomOutButton.FlatAppearance.BorderSize = 0;
             this.ZoomOutButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ZoomOutButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.ZoomOutButton.Location = new System.Drawing.Point(176, 0);
+            this.ZoomOutButton.Location = new System.Drawing.Point(264, 0);
+            this.ZoomOutButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ZoomOutButton.Name = "ZoomOutButton";
-            this.ZoomOutButton.Size = new System.Drawing.Size(28, 28);
+            this.ZoomOutButton.Size = new System.Drawing.Size(42, 43);
             this.ZoomOutButton.TabIndex = 13;
             this.toolTip1.SetToolTip(this.ZoomOutButton, "Zoom Out");
             this.ZoomOutButton.UseVisualStyleBackColor = false;
@@ -726,9 +735,10 @@ namespace Digital_Canvas
             this.RotateRightButton.FlatAppearance.BorderSize = 0;
             this.RotateRightButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.RotateRightButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.RotateRightButton.Location = new System.Drawing.Point(142, 0);
+            this.RotateRightButton.Location = new System.Drawing.Point(213, 0);
+            this.RotateRightButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotateRightButton.Name = "RotateRightButton";
-            this.RotateRightButton.Size = new System.Drawing.Size(28, 28);
+            this.RotateRightButton.Size = new System.Drawing.Size(42, 43);
             this.RotateRightButton.TabIndex = 12;
             this.toolTip1.SetToolTip(this.RotateRightButton, "Rotate Right");
             this.RotateRightButton.UseVisualStyleBackColor = false;
@@ -742,9 +752,10 @@ namespace Digital_Canvas
             this.RotateLeftButton.FlatAppearance.BorderSize = 0;
             this.RotateLeftButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.RotateLeftButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.RotateLeftButton.Location = new System.Drawing.Point(108, 0);
+            this.RotateLeftButton.Location = new System.Drawing.Point(162, 0);
+            this.RotateLeftButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotateLeftButton.Name = "RotateLeftButton";
-            this.RotateLeftButton.Size = new System.Drawing.Size(28, 28);
+            this.RotateLeftButton.Size = new System.Drawing.Size(42, 43);
             this.RotateLeftButton.TabIndex = 11;
             this.toolTip1.SetToolTip(this.RotateLeftButton, "Rotate Left");
             this.RotateLeftButton.UseVisualStyleBackColor = false;
@@ -758,9 +769,10 @@ namespace Digital_Canvas
             this.RedoButton.FlatAppearance.BorderSize = 0;
             this.RedoButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.RedoButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.RedoButton.Location = new System.Drawing.Point(74, 0);
+            this.RedoButton.Location = new System.Drawing.Point(111, 0);
+            this.RedoButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RedoButton.Name = "RedoButton";
-            this.RedoButton.Size = new System.Drawing.Size(28, 28);
+            this.RedoButton.Size = new System.Drawing.Size(42, 43);
             this.RedoButton.TabIndex = 10;
             this.toolTip1.SetToolTip(this.RedoButton, "Redo");
             this.RedoButton.UseVisualStyleBackColor = false;
@@ -774,9 +786,10 @@ namespace Digital_Canvas
             this.UndoButton.FlatAppearance.BorderSize = 0;
             this.UndoButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.UndoButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.UndoButton.Location = new System.Drawing.Point(40, 0);
+            this.UndoButton.Location = new System.Drawing.Point(60, 0);
+            this.UndoButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UndoButton.Name = "UndoButton";
-            this.UndoButton.Size = new System.Drawing.Size(28, 28);
+            this.UndoButton.Size = new System.Drawing.Size(42, 43);
             this.UndoButton.TabIndex = 9;
             this.toolTip1.SetToolTip(this.UndoButton, "Undo");
             this.UndoButton.UseVisualStyleBackColor = false;
@@ -785,18 +798,20 @@ namespace Digital_Canvas
             // YPositionLabel
             // 
             this.YPositionLabel.AutoSize = true;
-            this.YPositionLabel.Location = new System.Drawing.Point(842, 9);
+            this.YPositionLabel.Location = new System.Drawing.Point(1263, 14);
+            this.YPositionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.YPositionLabel.Name = "YPositionLabel";
-            this.YPositionLabel.Size = new System.Drawing.Size(20, 13);
+            this.YPositionLabel.Size = new System.Drawing.Size(28, 20);
             this.YPositionLabel.TabIndex = 1;
             this.YPositionLabel.Text = "Y: ";
             // 
             // XPositionLabel
             // 
             this.XPositionLabel.AutoSize = true;
-            this.XPositionLabel.Location = new System.Drawing.Point(796, 9);
+            this.XPositionLabel.Location = new System.Drawing.Point(1194, 14);
+            this.XPositionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.XPositionLabel.Name = "XPositionLabel";
-            this.XPositionLabel.Size = new System.Drawing.Size(20, 13);
+            this.XPositionLabel.Size = new System.Drawing.Size(28, 20);
             this.XPositionLabel.TabIndex = 0;
             this.XPositionLabel.Text = "X: ";
             // 
@@ -816,11 +831,42 @@ namespace Digital_Canvas
             this.LeftToolbarPanel.Controls.Add(this.PencilButton);
             this.LeftToolbarPanel.Controls.Add(this.PenButton);
             this.LeftToolbarPanel.Controls.Add(this.EraserButton);
-            this.LeftToolbarPanel.Location = new System.Drawing.Point(0, 51);
-            this.LeftToolbarPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.LeftToolbarPanel.Location = new System.Drawing.Point(0, 78);
             this.LeftToolbarPanel.Name = "LeftToolbarPanel";
-            this.LeftToolbarPanel.Size = new System.Drawing.Size(37, 592);
+            this.LeftToolbarPanel.Size = new System.Drawing.Size(56, 911);
             this.LeftToolbarPanel.TabIndex = 12;
+            // 
+            // TransformResizeButton
+            // 
+            this.TransformResizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.TransformResizeButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.transformIcon;
+            this.TransformResizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TransformResizeButton.FlatAppearance.BorderSize = 0;
+            this.TransformResizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.TransformResizeButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.TransformResizeButton.Location = new System.Drawing.Point(3, 649);
+            this.TransformResizeButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TransformResizeButton.Name = "TransformResizeButton";
+            this.TransformResizeButton.Size = new System.Drawing.Size(48, 49);
+            this.TransformResizeButton.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.TransformResizeButton, "Transform Resize");
+            this.TransformResizeButton.UseVisualStyleBackColor = false;
+            // 
+            // TransformRotateButton
+            // 
+            this.TransformRotateButton.BackColor = System.Drawing.Color.Transparent;
+            this.TransformRotateButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.transformRotateIcon;
+            this.TransformRotateButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TransformRotateButton.FlatAppearance.BorderSize = 0;
+            this.TransformRotateButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.TransformRotateButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.TransformRotateButton.Location = new System.Drawing.Point(3, 708);
+            this.TransformRotateButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TransformRotateButton.Name = "TransformRotateButton";
+            this.TransformRotateButton.Size = new System.Drawing.Size(48, 49);
+            this.TransformRotateButton.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.TransformRotateButton, "Transform Rotate");
+            this.TransformRotateButton.UseVisualStyleBackColor = false;
             // 
             // SelectFlipVerticalButton
             // 
@@ -830,9 +876,10 @@ namespace Digital_Canvas
             this.SelectFlipVerticalButton.FlatAppearance.BorderSize = 0;
             this.SelectFlipVerticalButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SelectFlipVerticalButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.SelectFlipVerticalButton.Location = new System.Drawing.Point(1, 384);
+            this.SelectFlipVerticalButton.Location = new System.Drawing.Point(2, 591);
+            this.SelectFlipVerticalButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SelectFlipVerticalButton.Name = "SelectFlipVerticalButton";
-            this.SelectFlipVerticalButton.Size = new System.Drawing.Size(32, 32);
+            this.SelectFlipVerticalButton.Size = new System.Drawing.Size(48, 49);
             this.SelectFlipVerticalButton.TabIndex = 12;
             this.toolTip1.SetToolTip(this.SelectFlipVerticalButton, "Transform Flip");
             this.SelectFlipVerticalButton.UseVisualStyleBackColor = false;
@@ -846,9 +893,10 @@ namespace Digital_Canvas
             this.SelectFlipHorizontalButton.FlatAppearance.BorderSize = 0;
             this.SelectFlipHorizontalButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SelectFlipHorizontalButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.SelectFlipHorizontalButton.Location = new System.Drawing.Point(2, 346);
+            this.SelectFlipHorizontalButton.Location = new System.Drawing.Point(3, 532);
+            this.SelectFlipHorizontalButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SelectFlipHorizontalButton.Name = "SelectFlipHorizontalButton";
-            this.SelectFlipHorizontalButton.Size = new System.Drawing.Size(32, 32);
+            this.SelectFlipHorizontalButton.Size = new System.Drawing.Size(48, 49);
             this.SelectFlipHorizontalButton.TabIndex = 11;
             this.toolTip1.SetToolTip(this.SelectFlipHorizontalButton, "Transform Flip");
             this.SelectFlipHorizontalButton.UseVisualStyleBackColor = false;
@@ -862,11 +910,13 @@ namespace Digital_Canvas
             this.DeselectButton.FlatAppearance.BorderSize = 0;
             this.DeselectButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.DeselectButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.DeselectButton.Location = new System.Drawing.Point(1, 308);
+            this.DeselectButton.Location = new System.Drawing.Point(2, 474);
+            this.DeselectButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DeselectButton.Name = "DeselectButton";
-            this.DeselectButton.Size = new System.Drawing.Size(32, 32);
+            this.DeselectButton.Size = new System.Drawing.Size(48, 49);
             this.DeselectButton.TabIndex = 10;
-            this.toolTip1.SetToolTip(this.DeselectButton, "Deselect");
+            this.toolTip1.SetToolTip(this.DeselectButton, "Deselect\r\n\r\nResets the selected area so that the whole canvas can be used again\r\n" +
+        "\r\nShortcut: D");
             this.DeselectButton.UseVisualStyleBackColor = false;
             this.DeselectButton.Click += new System.EventHandler(this.DeselectButton_Click);
             // 
@@ -878,11 +928,12 @@ namespace Digital_Canvas
             this.SelectionButton.FlatAppearance.BorderSize = 0;
             this.SelectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SelectionButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.SelectionButton.Location = new System.Drawing.Point(2, 270);
+            this.SelectionButton.Location = new System.Drawing.Point(3, 415);
+            this.SelectionButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SelectionButton.Name = "SelectionButton";
-            this.SelectionButton.Size = new System.Drawing.Size(32, 32);
+            this.SelectionButton.Size = new System.Drawing.Size(48, 49);
             this.SelectionButton.TabIndex = 9;
-            this.toolTip1.SetToolTip(this.SelectionButton, "Selection");
+            this.toolTip1.SetToolTip(this.SelectionButton, "Selection\r\n\r\nSelects an area of the canvas to work within\r\n\r\nShortcut: M");
             this.SelectionButton.UseVisualStyleBackColor = false;
             this.SelectionButton.Click += new System.EventHandler(this.SelectionButton_Click);
             // 
@@ -894,11 +945,12 @@ namespace Digital_Canvas
             this.FillButton.FlatAppearance.BorderSize = 0;
             this.FillButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.FillButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.FillButton.Location = new System.Drawing.Point(2, 232);
+            this.FillButton.Location = new System.Drawing.Point(3, 357);
+            this.FillButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FillButton.Name = "FillButton";
-            this.FillButton.Size = new System.Drawing.Size(32, 32);
+            this.FillButton.Size = new System.Drawing.Size(48, 49);
             this.FillButton.TabIndex = 8;
-            this.toolTip1.SetToolTip(this.FillButton, "Fill");
+            this.toolTip1.SetToolTip(this.FillButton, "Fill\r\n\r\nFills an area of the canvas in a solid colour\r\n\r\nShortcut: G");
             this.FillButton.UseVisualStyleBackColor = false;
             this.FillButton.Click += new System.EventHandler(this.FillTool_Click);
             // 
@@ -910,11 +962,12 @@ namespace Digital_Canvas
             this.TextButton.FlatAppearance.BorderSize = 0;
             this.TextButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.TextButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.TextButton.Location = new System.Drawing.Point(2, 194);
+            this.TextButton.Location = new System.Drawing.Point(3, 298);
+            this.TextButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextButton.Name = "TextButton";
-            this.TextButton.Size = new System.Drawing.Size(32, 32);
+            this.TextButton.Size = new System.Drawing.Size(48, 49);
             this.TextButton.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.TextButton, "Text");
+            this.toolTip1.SetToolTip(this.TextButton, "Text\r\n\r\nAdds formatted text to the canvas\r\n\r\nShortcut: T");
             this.TextButton.UseVisualStyleBackColor = false;
             this.TextButton.Click += new System.EventHandler(this.TextButton_Click);
             // 
@@ -926,11 +979,13 @@ namespace Digital_Canvas
             this.EyedropperButton.FlatAppearance.BorderSize = 0;
             this.EyedropperButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EyedropperButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.EyedropperButton.Location = new System.Drawing.Point(2, 156);
+            this.EyedropperButton.Location = new System.Drawing.Point(3, 240);
+            this.EyedropperButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EyedropperButton.Name = "EyedropperButton";
-            this.EyedropperButton.Size = new System.Drawing.Size(32, 32);
+            this.EyedropperButton.Size = new System.Drawing.Size(48, 49);
             this.EyedropperButton.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.EyedropperButton, "Eyedropper");
+            this.toolTip1.SetToolTip(this.EyedropperButton, "Eyedropper\r\n\r\nSets the brush colour to the colour of the pixel you select\r\n\r\nShor" +
+        "tcut: I\r\n");
             this.EyedropperButton.UseVisualStyleBackColor = false;
             this.EyedropperButton.Click += new System.EventHandler(this.EyedropperButton_Click);
             // 
@@ -942,11 +997,12 @@ namespace Digital_Canvas
             this.PaintbrushButton.FlatAppearance.BorderSize = 0;
             this.PaintbrushButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PaintbrushButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.PaintbrushButton.Location = new System.Drawing.Point(2, 80);
+            this.PaintbrushButton.Location = new System.Drawing.Point(3, 123);
+            this.PaintbrushButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PaintbrushButton.Name = "PaintbrushButton";
-            this.PaintbrushButton.Size = new System.Drawing.Size(32, 32);
+            this.PaintbrushButton.Size = new System.Drawing.Size(48, 49);
             this.PaintbrushButton.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.PaintbrushButton, "Paintbrush");
+            this.toolTip1.SetToolTip(this.PaintbrushButton, "Paintbrush\r\n\r\nUsed for drawing lines on the canvas\r\n\r\nShortcut: B");
             this.PaintbrushButton.UseVisualStyleBackColor = false;
             this.PaintbrushButton.Click += new System.EventHandler(this.PaintbrushButton_Click);
             // 
@@ -958,11 +1014,12 @@ namespace Digital_Canvas
             this.PencilButton.FlatAppearance.BorderSize = 0;
             this.PencilButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PencilButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.PencilButton.Location = new System.Drawing.Point(2, 42);
+            this.PencilButton.Location = new System.Drawing.Point(3, 65);
+            this.PencilButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PencilButton.Name = "PencilButton";
-            this.PencilButton.Size = new System.Drawing.Size(32, 32);
+            this.PencilButton.Size = new System.Drawing.Size(48, 49);
             this.PencilButton.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.PencilButton, "Pencil");
+            this.toolTip1.SetToolTip(this.PencilButton, "Pencil\r\n\r\nUsed for drawing lines on the canvas\r\n\r\nShortcut: Ctrl + P");
             this.PencilButton.UseVisualStyleBackColor = false;
             this.PencilButton.Click += new System.EventHandler(this.PencilButton_Click);
             // 
@@ -974,11 +1031,12 @@ namespace Digital_Canvas
             this.PenButton.FlatAppearance.BorderSize = 0;
             this.PenButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PenButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.PenButton.Location = new System.Drawing.Point(2, 4);
+            this.PenButton.Location = new System.Drawing.Point(3, 6);
+            this.PenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PenButton.Name = "PenButton";
-            this.PenButton.Size = new System.Drawing.Size(32, 32);
+            this.PenButton.Size = new System.Drawing.Size(48, 49);
             this.PenButton.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.PenButton, "Pen");
+            this.toolTip1.SetToolTip(this.PenButton, "Pen\r\n\r\nUsed for drawing lines on the canvas\r\n\r\nShortcut: P");
             this.PenButton.UseVisualStyleBackColor = false;
             this.PenButton.Click += new System.EventHandler(this.PenButton_Click);
             // 
@@ -990,59 +1048,33 @@ namespace Digital_Canvas
             this.EraserButton.FlatAppearance.BorderSize = 0;
             this.EraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EraserButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.EraserButton.Location = new System.Drawing.Point(2, 118);
+            this.EraserButton.Location = new System.Drawing.Point(3, 182);
+            this.EraserButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EraserButton.Name = "EraserButton";
-            this.EraserButton.Size = new System.Drawing.Size(32, 32);
+            this.EraserButton.Size = new System.Drawing.Size(48, 49);
             this.EraserButton.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.EraserButton, "Eraser");
+            this.toolTip1.SetToolTip(this.EraserButton, "Eraser\r\n\r\nUsed for removing lines/areas of colour from the canvas\r\n\r\nShortcut: E");
             this.EraserButton.UseVisualStyleBackColor = false;
             this.EraserButton.Click += new System.EventHandler(this.EraserButton_Click);
             // 
-            // TransformRotateButton
-            // 
-            this.TransformRotateButton.BackColor = System.Drawing.Color.Transparent;
-            this.TransformRotateButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.transformRotateIcon;
-            this.TransformRotateButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.TransformRotateButton.FlatAppearance.BorderSize = 0;
-            this.TransformRotateButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.TransformRotateButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.TransformRotateButton.Location = new System.Drawing.Point(2, 460);
-            this.TransformRotateButton.Name = "TransformRotateButton";
-            this.TransformRotateButton.Size = new System.Drawing.Size(32, 32);
-            this.TransformRotateButton.TabIndex = 13;
-            this.toolTip1.SetToolTip(this.TransformRotateButton, "Transform Rotate");
-            this.TransformRotateButton.UseVisualStyleBackColor = false;
-            // 
-            // TransformResizeButton
-            // 
-            this.TransformResizeButton.BackColor = System.Drawing.Color.Transparent;
-            this.TransformResizeButton.BackgroundImage = global::Digital_Canvas.Properties.Resources.transformIcon;
-            this.TransformResizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.TransformResizeButton.FlatAppearance.BorderSize = 0;
-            this.TransformResizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.TransformResizeButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.TransformResizeButton.Location = new System.Drawing.Point(2, 422);
-            this.TransformResizeButton.Name = "TransformResizeButton";
-            this.TransformResizeButton.Size = new System.Drawing.Size(32, 32);
-            this.TransformResizeButton.TabIndex = 14;
-            this.toolTip1.SetToolTip(this.TransformResizeButton, "Transform Resize");
-            this.TransformResizeButton.UseVisualStyleBackColor = false;
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowText;
-            this.ClientSize = new System.Drawing.Size(904, 643);
+            this.ClientSize = new System.Drawing.Size(1356, 989);
             this.Controls.Add(this.LeftToolbarPanel);
             this.Controls.Add(this.TopToolbarPanel);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "Digital Canvas";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);

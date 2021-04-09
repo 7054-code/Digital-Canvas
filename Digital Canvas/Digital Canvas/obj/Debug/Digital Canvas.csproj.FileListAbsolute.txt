@@ -115,3 +115,17 @@ C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\obj\Debug\Dig
 C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\bin\Debug\Digital Canvas.exe.config
 C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\bin\Debug\Digital Canvas.exe
 C:\Users\Phoenix\source\repos\Digital Canvas Broken\Digital Canvas\bin\Debug\Digital Canvas.pdb
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\bin\Debug\Digital Canvas.exe.config
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\bin\Debug\Digital Canvas.exe
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\bin\Debug\Digital Canvas.pdb
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csprojAssemblyReference.cache
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.g.resources
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.MainForm.resources
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.CanvasSizeForm.resources
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.InstructionManualForm.resources
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.TextToolForm.resources
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.Properties.Resources.resources
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csproj.GenerateResource.cache
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csproj.CoreCompileInputs.cache
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.exe
+D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.pdb

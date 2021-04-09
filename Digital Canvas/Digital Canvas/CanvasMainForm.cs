@@ -1199,7 +1199,80 @@ namespace Digital_Canvas
             CanvasPanel.Invalidate();
         }
 
+        //keyboard shortcuts
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            //brush types--------------------------
+            if (e.KeyCode == Keys.P && !e.Control)
+            {
+                PenButton.PerformClick();
+            }
 
+            if (e.KeyCode == Keys.P && e.Control)
+            {
+                PencilButton.PerformClick();
+            }
+
+            if (e.KeyCode == Keys.B)
+            {
+                PaintbrushButton.PerformClick();
+            }
+
+            if (e.KeyCode == Keys.E)
+            {
+                EraserButton.PerformClick();
+            }
+            //-------------------------------------
+
+            //other tools--------------------------
+            if (e.KeyCode == Keys.I)
+            {
+                EyedropperButton.PerformClick();
+            }
+
+            if (e.KeyCode == Keys.T)
+            {
+                TextButton.PerformClick();
+            }
+
+            if (e.KeyCode == Keys.G)
+            {
+                FillButton.PerformClick();
+            }
+
+            if (e.KeyCode == Keys.M)
+            {
+                SelectionButton.PerformClick();
+            }
+
+            if (e.KeyCode == Keys.D)
+            {
+                DeselectButton.PerformClick();
+            }
+
+            if (e.Control && e.KeyCode == Keys.Z)
+            {
+                UndoButton.PerformClick();
+            }
+
+            if (e.Control && e.KeyCode == Keys.Y)
+            {
+                RedoButton.PerformClick();
+            }
+            //-------------------------------------
+
+            //menu strip---------------------------
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                copyToolStripMenuItem.PerformClick();
+            }
+
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                pasteToolStripMenuItem.PerformClick();
+            }
+            //-------------------------------------
+        }
     }
 
 }
