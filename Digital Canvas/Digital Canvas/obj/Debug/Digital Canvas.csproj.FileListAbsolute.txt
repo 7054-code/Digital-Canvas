@@ -47,7 +47,6 @@ C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canva
 C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\bin\Debug\Digital Canvas.pdb
 C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csprojAssemblyReference.cache
 C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.MainForm.resources
-C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.Form2.resources
 C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.Properties.Resources.resources
 C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csproj.GenerateResource.cache
 C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csproj.CoreCompileInputs.cache
@@ -129,3 +128,7 @@ D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Tra
 D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.csproj.CoreCompileInputs.cache
 D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.exe
 D:\Uni Work\Year 2\Professional Development\Digital-Canvas-Selection-Missing-Transformations\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.pdb
+C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital Canvas.g.resources
+C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.CanvasSizeForm.resources
+C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.InstructionManualForm.resources
+C:\Users\Phoenix\source\repos\Digital-Canvas-master\Digital Canvas\Digital Canvas\obj\Debug\Digital_Canvas.TextToolForm.resources
