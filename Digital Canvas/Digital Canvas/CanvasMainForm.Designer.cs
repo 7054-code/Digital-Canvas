@@ -145,7 +145,7 @@ namespace Digital_Canvas
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(605, 586);
+            this.CanvasPanel.Size = new System.Drawing.Size(608, 586);
             this.CanvasPanel.TabIndex = 4;
             this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
@@ -551,7 +551,7 @@ namespace Digital_Canvas
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(865, 589);
-            this.splitContainer1.SplitterDistance = 604;
+            this.splitContainer1.SplitterDistance = 607;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
@@ -588,7 +588,7 @@ namespace Digital_Canvas
             this.layersPanel.Location = new System.Drawing.Point(-2, 2);
             this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 459);
+            this.layersPanel.Size = new System.Drawing.Size(284, 462);
             this.layersPanel.TabIndex = 10;
             // 
             // btnLayersVisible
@@ -599,10 +599,11 @@ namespace Digital_Canvas
             this.btnLayersVisible.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLayersVisible.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.btnLayersVisible.ForeColor = System.Drawing.Color.Transparent;
-            this.btnLayersVisible.Location = new System.Drawing.Point(213, 3);
+            this.btnLayersVisible.Location = new System.Drawing.Point(216, 3);
             this.btnLayersVisible.Name = "btnLayersVisible";
             this.btnLayersVisible.Size = new System.Drawing.Size(34, 32);
             this.btnLayersVisible.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.btnLayersVisible, "Hide/show layer");
             this.btnLayersVisible.UseVisualStyleBackColor = false;
             this.btnLayersVisible.Click += new System.EventHandler(this.btnLayersVisible_Click);
             // 
@@ -610,11 +611,12 @@ namespace Digital_Canvas
             // 
             this.btnLayersMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.btnLayersMoveDown.ForeColor = System.Drawing.Color.Black;
-            this.btnLayersMoveDown.Location = new System.Drawing.Point(198, 41);
+            this.btnLayersMoveDown.Location = new System.Drawing.Point(194, 41);
             this.btnLayersMoveDown.Name = "btnLayersMoveDown";
             this.btnLayersMoveDown.Size = new System.Drawing.Size(56, 23);
             this.btnLayersMoveDown.TabIndex = 9;
             this.btnLayersMoveDown.Text = "Down";
+            this.toolTip1.SetToolTip(this.btnLayersMoveDown, "Move layer down");
             this.btnLayersMoveDown.UseVisualStyleBackColor = true;
             this.btnLayersMoveDown.Click += new System.EventHandler(this.btnLayersMoveDown_Click);
             // 
@@ -627,6 +629,7 @@ namespace Digital_Canvas
             this.btnLayersMoveUp.Size = new System.Drawing.Size(56, 23);
             this.btnLayersMoveUp.TabIndex = 8;
             this.btnLayersMoveUp.Text = "Up";
+            this.toolTip1.SetToolTip(this.btnLayersMoveUp, "Move layer up");
             this.btnLayersMoveUp.UseVisualStyleBackColor = true;
             this.btnLayersMoveUp.Click += new System.EventHandler(this.btnLayersMoveUp_Click);
             // 
@@ -638,10 +641,11 @@ namespace Digital_Canvas
             this.btnLayersRemove.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLayersRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.btnLayersRemove.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnLayersRemove.Location = new System.Drawing.Point(175, 3);
+            this.btnLayersRemove.Location = new System.Drawing.Point(175, 0);
             this.btnLayersRemove.Name = "btnLayersRemove";
             this.btnLayersRemove.Size = new System.Drawing.Size(32, 32);
             this.btnLayersRemove.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.btnLayersRemove, "Delete layer");
             this.btnLayersRemove.UseVisualStyleBackColor = false;
             this.btnLayersRemove.Click += new System.EventHandler(this.btnLayersRemove_Click);
             // 
@@ -657,6 +661,7 @@ namespace Digital_Canvas
             this.btnLayersAdd.Name = "btnLayersAdd";
             this.btnLayersAdd.Size = new System.Drawing.Size(34, 34);
             this.btnLayersAdd.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.btnLayersAdd, "Add layer");
             this.btnLayersAdd.UseVisualStyleBackColor = false;
             this.btnLayersAdd.Click += new System.EventHandler(this.btnLayersAdd_Click);
             // 
@@ -667,6 +672,7 @@ namespace Digital_Canvas
             this.lstboxLayers.Name = "lstboxLayers";
             this.lstboxLayers.Size = new System.Drawing.Size(120, 108);
             this.lstboxLayers.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.lstboxLayers, "Each layer is independant and has it\'s own canvas");
             this.lstboxLayers.SelectedIndexChanged += new System.EventHandler(this.lstboxLayers_SelectedIndexChanged);
             // 
             // TopToolbarPanel
