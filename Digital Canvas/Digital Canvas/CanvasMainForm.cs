@@ -1217,14 +1217,14 @@ namespace Digital_Canvas
             //for editing on the new current layer
             bmpCanvas = new Bitmap(listLayers.Find(layer => layer.LayerName == currentLayer).BmpLayer);
 
-            //change text to indicate visibility state to user
+            //change image to indicate visibility state to user
             if (listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible)
             {
-                btnLayersVisible.Text = "Visible: True";
+                btnLayersVisible.BackgroundImage = Image.FromFile(@Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\Resources\hideLayerIcon.png")));
             }
             else
             {
-                btnLayersVisible.Text = "Visible: False";
+                btnLayersVisible.BackgroundImage = Image.FromFile(@Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\Resources\viewLayerIcon.png")));
             }
 
             CanvasPanel.Invalidate();
@@ -1286,14 +1286,14 @@ namespace Digital_Canvas
             listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible =
                 !listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible;
 
-            //change text to indicate visibility state to user
+            //change image to indicate visibility state to user
             if (listLayers.Find(layer => layer.LayerName == currentLayer).IsVisible)
             {
-                btnLayersVisible.Text = "Visible: True";
+                btnLayersVisible.BackgroundImage = Image.FromFile(@Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\Resources\hideLayerIcon.png")));
             }
             else
             {
-                btnLayersVisible.Text = "Visible: False";
+                btnLayersVisible.BackgroundImage = Image.FromFile(@Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\Resources\viewLayerIcon.png")));
             }
 
             //update panel to show layer change

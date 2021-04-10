@@ -145,7 +145,7 @@ namespace Digital_Canvas
             this.CanvasPanel.Cursor = System.Windows.Forms.Cursors.Cross;
             this.CanvasPanel.Location = new System.Drawing.Point(0, 0);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(603, 586);
+            this.CanvasPanel.Size = new System.Drawing.Size(605, 586);
             this.CanvasPanel.TabIndex = 4;
             this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             this.CanvasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPanel_MouseDown);
@@ -551,7 +551,7 @@ namespace Digital_Canvas
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(865, 589);
-            this.splitContainer1.SplitterDistance = 602;
+            this.splitContainer1.SplitterDistance = 604;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
@@ -588,26 +588,29 @@ namespace Digital_Canvas
             this.layersPanel.Location = new System.Drawing.Point(-2, 2);
             this.layersPanel.Margin = new System.Windows.Forms.Padding(2);
             this.layersPanel.Name = "layersPanel";
-            this.layersPanel.Size = new System.Drawing.Size(284, 457);
+            this.layersPanel.Size = new System.Drawing.Size(284, 459);
             this.layersPanel.TabIndex = 10;
             // 
             // btnLayersVisible
             // 
+            this.btnLayersVisible.BackColor = System.Drawing.Color.Transparent;
+            this.btnLayersVisible.BackgroundImage = global::Digital_Canvas.Properties.Resources.hideLayerIcon;
+            this.btnLayersVisible.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnLayersVisible.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLayersVisible.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.btnLayersVisible.ForeColor = System.Drawing.Color.Black;
-            this.btnLayersVisible.Location = new System.Drawing.Point(135, 61);
+            this.btnLayersVisible.ForeColor = System.Drawing.Color.Transparent;
+            this.btnLayersVisible.Location = new System.Drawing.Point(213, 3);
             this.btnLayersVisible.Name = "btnLayersVisible";
-            this.btnLayersVisible.Size = new System.Drawing.Size(120, 23);
+            this.btnLayersVisible.Size = new System.Drawing.Size(34, 32);
             this.btnLayersVisible.TabIndex = 10;
-            this.btnLayersVisible.Text = "Visible: True";
-            this.btnLayersVisible.UseVisualStyleBackColor = true;
+            this.btnLayersVisible.UseVisualStyleBackColor = false;
             this.btnLayersVisible.Click += new System.EventHandler(this.btnLayersVisible_Click);
             // 
             // btnLayersMoveDown
             // 
             this.btnLayersMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.btnLayersMoveDown.ForeColor = System.Drawing.Color.Black;
-            this.btnLayersMoveDown.Location = new System.Drawing.Point(197, 90);
+            this.btnLayersMoveDown.Location = new System.Drawing.Point(198, 41);
             this.btnLayersMoveDown.Name = "btnLayersMoveDown";
             this.btnLayersMoveDown.Size = new System.Drawing.Size(56, 23);
             this.btnLayersMoveDown.TabIndex = 9;
@@ -619,7 +622,7 @@ namespace Digital_Canvas
             // 
             this.btnLayersMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.btnLayersMoveUp.ForeColor = System.Drawing.Color.Black;
-            this.btnLayersMoveUp.Location = new System.Drawing.Point(135, 90);
+            this.btnLayersMoveUp.Location = new System.Drawing.Point(135, 41);
             this.btnLayersMoveUp.Name = "btnLayersMoveUp";
             this.btnLayersMoveUp.Size = new System.Drawing.Size(56, 23);
             this.btnLayersMoveUp.TabIndex = 8;
@@ -629,26 +632,32 @@ namespace Digital_Canvas
             // 
             // btnLayersRemove
             // 
+            this.btnLayersRemove.BackColor = System.Drawing.Color.Transparent;
+            this.btnLayersRemove.BackgroundImage = global::Digital_Canvas.Properties.Resources.deleteLayerIcon;
+            this.btnLayersRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnLayersRemove.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLayersRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.btnLayersRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnLayersRemove.Location = new System.Drawing.Point(135, 32);
+            this.btnLayersRemove.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLayersRemove.Location = new System.Drawing.Point(175, 3);
             this.btnLayersRemove.Name = "btnLayersRemove";
-            this.btnLayersRemove.Size = new System.Drawing.Size(120, 23);
+            this.btnLayersRemove.Size = new System.Drawing.Size(32, 32);
             this.btnLayersRemove.TabIndex = 7;
-            this.btnLayersRemove.Text = "Remove layer";
-            this.btnLayersRemove.UseVisualStyleBackColor = true;
+            this.btnLayersRemove.UseVisualStyleBackColor = false;
             this.btnLayersRemove.Click += new System.EventHandler(this.btnLayersRemove_Click);
             // 
             // btnLayersAdd
             // 
+            this.btnLayersAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnLayersAdd.BackgroundImage = global::Digital_Canvas.Properties.Resources.addLayerIcon;
+            this.btnLayersAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnLayersAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLayersAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.btnLayersAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnLayersAdd.Location = new System.Drawing.Point(135, 3);
+            this.btnLayersAdd.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLayersAdd.Location = new System.Drawing.Point(135, 1);
             this.btnLayersAdd.Name = "btnLayersAdd";
-            this.btnLayersAdd.Size = new System.Drawing.Size(120, 23);
+            this.btnLayersAdd.Size = new System.Drawing.Size(34, 34);
             this.btnLayersAdd.TabIndex = 6;
-            this.btnLayersAdd.Text = "Add layer";
-            this.btnLayersAdd.UseVisualStyleBackColor = true;
+            this.btnLayersAdd.UseVisualStyleBackColor = false;
             this.btnLayersAdd.Click += new System.EventHandler(this.btnLayersAdd_Click);
             // 
             // lstboxLayers
