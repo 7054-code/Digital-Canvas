@@ -320,7 +320,8 @@ namespace Digital_Canvas
         //creating an eraser with opacity, colour, size and passing it to the DrawLineCanvas method
         private void ToolErasing()
         {
-            var pen = new Pen(Color.FromArgb((int)ToolOpacityNumericUpDown.Value, Color.White), (int)ToolSizeNumericUpDown.Value);
+            //alpha = opacity so set to 0 to override previous alpha of whatever is drawn
+            var pen = new Pen(Color.FromArgb(0, Color.Transparent), (int)ToolSizeNumericUpDown.Value);
             DrawLineCanvas(pen);
         }
 
@@ -421,6 +422,15 @@ namespace Digital_Canvas
             //instead of drawing onto the canvaspanel directly, draw onto the bitmap
             var gfx = Graphics.FromImage(bmpCanvas);
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
+            //SourceCopy allows eraser to work but shouldn't be used when drawing since it looks weird
+            if (currentTool == Tool.ERASER)
+            {
+                gfx.CompositingMode = CompositingMode.SourceCopy;   
+            }
+            else
+            {
+                gfx.CompositingMode = CompositingMode.SourceOver;
+            }
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
 

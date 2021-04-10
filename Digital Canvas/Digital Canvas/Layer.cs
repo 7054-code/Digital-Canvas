@@ -3,6 +3,7 @@ using System.Drawing;
 
 namespace Digital_Canvas
 {
+    [Serializable]
     public class Layer
     {
         private string layerName;
