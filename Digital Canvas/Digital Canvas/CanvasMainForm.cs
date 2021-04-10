@@ -1351,21 +1351,21 @@ namespace Digital_Canvas
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            copyBmp = bmpCanvas.Clone(activeArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            copyBmp = bmpCanvas.Clone(activeArea, PixelFormat.Format32bppPArgb);
 
-            SolidBrush whiteBrush = new SolidBrush(Color.White);
+            SolidBrush transparentBrush = new SolidBrush(Color.FromArgb(0, Color.Transparent));
 
             using (Graphics gfx = Graphics.FromImage(bmpCanvas))
             {
-                gfx.FillRectangle(whiteBrush, activeArea);
+                gfx.CompositingMode = CompositingMode.SourceCopy;
+                gfx.FillRectangle(transparentBrush, activeArea);
             }
-
             CanvasPanel.Invalidate();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            copyBmp = bmpCanvas.Clone(activeArea, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            copyBmp = bmpCanvas.Clone(activeArea, PixelFormat.Format32bppPArgb);
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
