@@ -114,10 +114,13 @@ namespace Digital_Canvas
         private void ColourButton_Click(object sender, EventArgs e)
         {
             using (var diag = new ColorDialog())
+            {
+                diag.FullOpen = true;
                 if (diag.ShowDialog() == DialogResult.OK)
                 {
                     ColourButton.BackColor = diag.Color;
                 }
+            }
             pencilColourChanged = true;
             paintbrushColourChanged = true;
         }
